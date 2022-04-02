@@ -5,6 +5,8 @@ function App() {
   return (
     <Router>
       <Initial />
+      <Routes>
+      </Routes>
     </Router>
   );
 }
