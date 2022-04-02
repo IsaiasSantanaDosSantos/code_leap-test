@@ -1,0 +1,32 @@
+
+.init div {
+    position: absolute;
+    width: 100%;
+    height: 167px;
+    top: 247px;
+    left: 0px;
+}
+.init img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+    width: 100%;
+    height: 167px;
+    padding: 10px;
+}
+
+@media (max-width: 500px) {
+    .init div {
+        width: 100%;
+        height: 120px;
+        top: 200px;
+        left: 0px;
+    }
+    .init img {
+        max-width: 250px;
+        width: 100%;
+        height: 107px;
+        padding: 10px;
+    }
+}
