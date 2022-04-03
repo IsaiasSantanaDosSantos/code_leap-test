@@ -30,6 +30,13 @@
     color: #000000;
 }
 
+ button:hover {
+    color: #000000;
+    background-color: #ffff;
+    border: 2px solid #000000;
+  }
+
+
 @media (max-width: 516px) {
     .card {
         margin-top: 150px;

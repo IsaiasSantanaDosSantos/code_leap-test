@@ -1,6 +1,8 @@
+import { ThemeProvider } from "@emotion/react";
 import styled from "@emotion/styled";
 import {
   Button,
+  createTheme,
   inputLabelClasses,
   outlinedInputClasses,
   TextField,
@@ -8,7 +10,6 @@ import {
 import React, { useState } from "react";
 
 import styles from "./ModalComp.module.css";
-
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -44,6 +45,14 @@ const StyledTextField = styled(TextField)({
 function ModalComp() {
   const [name, setName] = useState();
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#fffff",
+      },
+    },
+  });
+
   return (
     <React.Fragment>
       <div className={styles.container}>
@@ -58,19 +67,24 @@ function ModalComp() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name..."
           />
-          <Button
-            sx={{
-              background: "#000000",
-              borderRadius: "0",
-              width: "111px",
-              height: "33px",
-              marginTop: "20px",
-              float: "right",
-            }}
-            variant="contained"
-          >
-            enter
-          </Button>
+          <ThemeProvider theme={theme}>
+            <Button
+              className={styles.btnLogin}
+              sx={{
+                  color: "#fff",
+                background: "#000000",
+                borderRadius: "0",
+                width: "111px",
+                height: "33px",
+                marginTop: "20px",
+                float: "right",
+              }}
+              variant="contained"
+              color="primary"
+            >
+              enter
+            </Button>
+          </ThemeProvider>
         </div>
       </div>
     </React.Fragment>

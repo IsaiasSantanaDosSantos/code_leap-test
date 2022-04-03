@@ -4,12 +4,13 @@ import logo from "../img/logo_cl.png";
 import { useNavigate } from "react-router-dom";
 
 function Initial() {
-  const navigator = useNavigate();
+
+  const navigator = useNavigate()
 
   function NextPage() {
     setTimeout(() => {
       navigator("/login");
-    }, 2000);
+    }, 1000);
   }
 
   NextPage();
