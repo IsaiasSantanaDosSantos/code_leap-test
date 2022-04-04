@@ -1,0 +1,56 @@
+.body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    background-color: #dddd;
+}
+.container {
+    position: relative;
+    margin: auto;
+    margin-top: -27px;
+    width: 700px;
+    height: 100%;
+    background: #FFFFFF;
+    
+
+}
+
+.informations {
+    background-color: #000000;
+    width: 100%;
+}
+
+.network {
+    color: #FFFFFF;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    padding-top: 27px;
+    padding-bottom: 27px;
+    padding-left: 37px;
+    width: 100%;
+}
+
+.contentContaiener {
+    margin: 35px 28px 28px 35px;
+}
+
+.newForm {
+    background: #FFFFFF;
+    border: 1px solid #999999;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-bottom: 77px;
+}
+
+.newForm p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    color: #000000;
+}
