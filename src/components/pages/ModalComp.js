@@ -7,7 +7,7 @@ import {
   outlinedInputClasses,
   TextField,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./ModalComp.module.css";
 
@@ -44,6 +44,7 @@ const StyledTextField = styled(TextField)({
 
 function ModalComp() {
   const [name, setName] = useState();
+  const [btnLogin, setBtnLogin] = useState(true);
 
   const theme = createTheme({
     palette: {
@@ -53,6 +54,17 @@ function ModalComp() {
     },
   });
 
+  function enterUser(e){
+    e.preventDefault();
+    console.log(name)
+  }
+ 
+  //console.log(name.length)
+
+  /*
+  Fiz o botão sumir(melhor seria se apenas desativasse), agora preciso fazer ele aparecer ao começar a digitar no input
+  */
+   
   return (
     <React.Fragment>
       <div className={styles.container}>
@@ -68,22 +80,43 @@ function ModalComp() {
             placeholder="Enter your name..."
           />
           <ThemeProvider theme={theme}>
-            <Button
-              className={styles.btnLogin}
-              sx={{
+            
+            {name ? <Button
+                className={styles.btnLogin}
+                sx={{
                   color: "#fff",
-                background: "#000000",
-                borderRadius: "0",
-                width: "111px",
-                height: "33px",
-                marginTop: "20px",
-                float: "right",
-              }}
-              variant="contained"
-              color="primary"
-            >
-              enter
-            </Button>
+                  background: "#000000",
+                  borderRadius: "0",
+                  width: "111px",
+                  height: "33px",
+                  marginTop: "20px",
+                  float: "right",
+                }}
+                variant="contained"
+                color="primary"
+                onClick={enterUser}
+              >
+                enter
+              </Button> : <Button
+              disabled={true}
+                className={styles.btnLogin}
+                sx={{
+                  color: "#fff",
+                  background: "#000000",
+                  borderRadius: "0",
+                  width: "111px",
+                  height: "33px",
+                  marginTop: "20px",
+                  float: "right",
+                }}
+                variant="contained"
+                color="primary"
+                onClick={enterUser}
+              >
+                enter
+              </Button> }
+             
+            
           </ThemeProvider>
         </div>
       </div>
