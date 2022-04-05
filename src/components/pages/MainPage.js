@@ -16,6 +16,7 @@ import styles from "./MainPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../redux/User";
 import { useNavigate } from "react-router-dom";
+import NewForm from "./NewForm";
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -106,81 +107,7 @@ function MainPage() {
               Hello, <span style={{}}>{name}</span>!
             </p>
           </div>
-          <form className={styles.newForm}>
-            <Container spacing={4}>
-              <p>What's on your mind?</p>
-              <StyledTextField
-                fullWidth={true}
-                variant="outlined"
-                label="Title"
-                name="name"
-                placeholder="Hello world"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <TextareaAutosize
-                fullWidth={true}
-                aria-label="minimum height"
-                minRows={8}
-                placeholder="Content here"
-                style={{
-                  width: "100%",
-                  marginTop: "20px",
-                  background: "#FFFFFF",
-                  border: "1px solid #777777",
-                  boxSizing: "borderBox",
-                  borderRadius: "4px",
-                  padding: "10px",
-                  fontFamily: "Roboto",
-                  fontStyle: "normal",
-                  fontWeight: "400px",
-                  fontSize: "16px",
-                  lineHeight: "16px",
-                  color: "#000000",
-                }}
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-              />
-              <ThemeProvider theme={theme}>
-                {title && content ? (
-                  <Button
-                    className={styles.btnLogin}
-                    sx={{
-                      color: "#fff",
-                      background: "#000000",
-                      borderRadius: "0",
-                      width: "111px",
-                      height: "33px",
-                      marginTop: "20px",
-                      float: "right",
-                    }}
-                    variant="contained"
-                    color="primary"
-                  >
-                    create
-                  </Button>
-                ) : (
-                  <Button
-                    disabled={true}
-                    className={styles.btnLogin}
-                    sx={{
-                      color: "#fff",
-                      background: "#000000",
-                      borderRadius: "0",
-                      width: "111px",
-                      height: "33px",
-                      marginTop: "20px",
-                      float: "right",
-                    }}
-                    variant="contained"
-                    color="primary"
-                  >
-                    create
-                  </Button>
-                )}
-              </ThemeProvider>
-            </Container>
-          </form>
+          <NewForm />
         </div>
       </div>
     </div>
