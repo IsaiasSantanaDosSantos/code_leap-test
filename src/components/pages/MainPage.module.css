@@ -58,6 +58,10 @@
     line-height: 26px;
     color: #000000;
 }
+.btnLogout {
+    margin-right: 2px;
+    margin-left: 50px;
+}
 
 @media (max-width: 730px) {
     .container {
@@ -66,4 +70,15 @@
         height: 100%;
     
     }
+    
+}
+
+@media (max-width: 570px) {
+    .container {
+        margin: auto;
+        width: 400px;
+        height: 100%;
+    
+    }
+    
 }

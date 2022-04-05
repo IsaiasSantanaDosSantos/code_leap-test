@@ -75,12 +75,13 @@ function MainPage() {
     <div className={styles.body}>
       <div className={styles.container} justifyContent="center">
         <Grid container className={styles.informations}>
-          <Grid item sm={9} lg={9}>
+          <Grid item  xs={8} sm={9}>
             <p className={styles.network}>CodeLeap Network</p>
           </Grid>
-          <Grid item sm={3} lg={3}>
+          <Grid item xs={4} sm={3}>
             <ThemeProvider theme={theme}>
               <Button
+              className={styles.btnLogout}
                 sx={{
                   color: "#fff",
                   background: "#000000",
@@ -88,8 +89,7 @@ function MainPage() {
                   width: "111px",
                   height: "33px",
                   marginTop: "20px",
-                  marginRight: "32px",
-                  float: "right",
+                  marginLeft: "-10px",
                   border: "1px solid #fff",
                 }}
                 variant="contained"
