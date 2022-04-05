@@ -1,0 +1,33 @@
+.postsForm {
+    background: #FFFFFF;
+    border: 1px solid #999999;
+    box-sizing: border-box;
+    padding-bottom: 30px;
+    margin-top: 30px
+}
+
+.containerTitle {
+    background-color: #000000;
+    width: 100%;
+}
+
+.postTitle {
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    padding-left: 27px;
+    padding-top: 27px;
+    padding-bottom: 27px;
+    margin-top: 0px;
+}
+
+.postsForm p {
+    padding-left: 27px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #777777;
+}
