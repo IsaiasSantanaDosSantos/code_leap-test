@@ -10,7 +10,7 @@ function Initial() {
   function NextPage() {
     setTimeout(() => {
       navigator("/login");
-    }, 1000);
+    }, 5000);
   }
 
   NextPage();
