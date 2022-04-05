@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../redux/User";
 import { useNavigate } from "react-router-dom";
 import NewForm from "./NewForm";
+import Posts from "./Posts"
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -101,14 +102,15 @@ function MainPage() {
             </ThemeProvider>
           </Grid>
         </Grid>
-        <div className={styles.contentContaiener}>
+        <Container spacing={3} className={styles.contentContaiener}>
           <div>
             <p className={styles.salutation}>
-              Hello, <span style={{}}>{name}</span>!
+              Hello, <span >{name}</span>!
             </p>
           </div>
           <NewForm />
-        </div>
+          <Posts />
+        </Container>
       </div>
     </div>
   );
