@@ -1,69 +1,39 @@
-import {
-  Container,
-  Button,
-  createTheme,
-  inputLabelClasses,
-  outlinedInputClasses,
-  TextField,
-} from "@mui/material";
-import { ThemeProvider } from "@emotion/react";
+import { Container, Grid } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import styled from "@emotion/styled";
-import React, { useState } from "react";
 import styles from "./Posts.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { logout, selectUser } from "../../redux/User";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/User";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import EditIcon from "@material-ui/icons/Edit";
 
-import NewForm from "./NewForm";
+function deletePost() {
+  alert("Do you want delete post?");
+}
 
-const StyledTextField = styled(TextField)({
-  [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
-    borderColor: "#777777",
-  },
-  [`& .${outlinedInputClasses.root}.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]:
-    {
-      borderColor: "#777777",
-    },
-  [`&:hover .${outlinedInputClasses.input}`]: {
-    color: "#000000",
-  },
-  [`& .${outlinedInputClasses.root}.${outlinedInputClasses.focused} .${outlinedInputClasses.input}`]:
-    {
-      color: "#777777",
-    },
-  [`& .${inputLabelClasses.outlined}`]: {
-    color: "#000000",
-  },
-  [`&:hover .${inputLabelClasses.outlined}`]: {
-    color: "#000000",
-  },
-  [`& .${inputLabelClasses.outlined}.${inputLabelClasses.focused}`]: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "400",
-    fontSize: "16px",
-    lineHeight: "19px",
-    color: "#000000",
-  },
-});
+function editPost() {
+  alert("Do you want edit post?");
+}
 
 function Post() {
-  const [title, setTitle] = useState();
-  const [content, setContent] = useState();
-  
-  const dispatch = useDispatch();
-
   const { name } = useSelector(selectUser);
 
   return (
     <form className={styles.postsForm}>
-      <div className={styles.containerTitle}>
-        <h3 className={styles.postTitle}>Title</h3>
-      </div>
+      <Grid className={styles.containerTitle}>
+        <Grid item xs={8} justifyItems={"flex-start"}>
+          <h4 className={styles.postTitle}>Title</h4>
+        </Grid>
+        <Grid item xs={4} className={styles.iconsClass}>
+          <DeleteForeverIcon onClick={deletePost} />
+        </Grid>
+        <Grid item xs={4} className={styles.iconsClass}>
+          <EditIcon onClick={editPost} />
+        </Grid>
+      </Grid>
       <div>
-          <p>@{name}</p>
+        <p>@{name}</p>
       </div>
-      <Container >
+      <Container>
         <TextareaAutosize
           fullWidth={true}
           aria-label="minimum height"
@@ -84,7 +54,6 @@ function Post() {
             color: "#000000",
           }}
         />
-        
       </Container>
     </form>
   );
