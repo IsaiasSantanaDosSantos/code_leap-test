@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { changeUser } from "../../redux/User";
+import { changeUser } from "../../redux/UserSlice";
 
 import styles from "./ModalComp.module.css";
 

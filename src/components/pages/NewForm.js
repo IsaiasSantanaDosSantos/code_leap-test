@@ -9,8 +9,16 @@ import {
   import { ThemeProvider } from "@emotion/react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import styles from "./MainPage.module.css";
+
+import { useDispatch } from "react-redux";
+import { changeTitle } from "../../redux/TitleSlice";
+
+//teste
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/UserSlice";
+import { selectTitle } from "../../redux/TitleSlice";
 
 const StyledTextField = styled(TextField)({
     [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -44,8 +52,10 @@ const StyledTextField = styled(TextField)({
   })
 
 function NewForm(){
-    const [title, setTitle] = useState();
-    const [content, setContent] = useState();
+    const [titlePost, setTitlePost] = useState();
+    const [postContent, setPostContent] = useState();
+    
+  const dispatch = useDispatch();
   
     const theme = createTheme({
       palette: {
@@ -56,6 +66,20 @@ function NewForm(){
     });
 
 
+
+    //teste
+    const { name } = useSelector(selectUser);
+  //const { postTitle } = useSelector(selectTitle);
+  const postTitle = useSelector(state => state.title.name)
+
+function createPost(){
+  dispatch(changeTitle(titlePost))
+  console.log("O postTitle é: " + postTitle)
+  console.log("O nome é: " + name)
+  console.log("O titlePost é: " + titlePost);
+  console.log("O nome é: " + name);
+}
+    
     return(
         <form className={styles.newForm}>
             <Container spacing={4}>
@@ -66,11 +90,10 @@ function NewForm(){
                 label="Title"
                 name="name"
                 placeholder="Hello world"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={titlePost}
+                onChange={(e) => setTitlePost(e.target.value)}
               />
               <TextareaAutosize
-                fullWidth={true}
                 aria-label="minimum height"
                 minRows={8}
                 placeholder="Content here"
@@ -89,11 +112,11 @@ function NewForm(){
                   lineHeight: "16px",
                   color: "#000000",
                 }}
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
+                value={postContent}
+                onChange={(e) => setPostContent(e.target.value)}
               />
               <ThemeProvider theme={theme}>
-                {title && content ? (
+                {titlePost && postContent ? (
                   <Button 
                     className={styles.btnLogin}
                     sx={{
@@ -107,6 +130,7 @@ function NewForm(){
                     }}
                     variant="contained"
                     color="primary"
+                    onClick={createPost}
                   >
                     create
                   </Button>
@@ -125,6 +149,7 @@ function NewForm(){
                     }}
                     variant="contained"
                     color="primary"
+                    onClick={createPost}
                   >
                     create
                   </Button>
@@ -134,5 +159,6 @@ function NewForm(){
           </form>
     )
 }
+
 
 export default NewForm
