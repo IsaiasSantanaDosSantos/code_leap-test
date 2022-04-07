@@ -1,9 +1,4 @@
-import {
-  Container,
-  Button,
-  createTheme,
-  Grid,
-} from "@mui/material";
+import { Container, Button, createTheme, Grid } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import React, { useState } from "react";
 
@@ -12,9 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import NewForm from "./NewForm";
-import Posts from "./Posts"
-
-
+import Posts from "./Posts";
 
 function MainPage() {
   const navigator = useNavigate();
@@ -39,13 +32,13 @@ function MainPage() {
     <div className={styles.body}>
       <div className={styles.container}>
         <Grid container className={styles.informations}>
-          <Grid item  xs={8} sm={9}>
+          <Grid item xs={8} sm={9}>
             <p className={styles.network}>CodeLeap Network</p>
           </Grid>
           <Grid item xs={4} sm={3}>
             <ThemeProvider theme={theme}>
               <Button
-              className={styles.btnLogout}
+                className={styles.btnLogout}
                 sx={{
                   color: "#fff",
                   background: "#000000",
@@ -68,7 +61,7 @@ function MainPage() {
         <Container spacing={3} className={styles.contentContaiener}>
           <div>
             <p className={styles.salutation}>
-              Hello, <span >{name}</span>!
+              Hello, <span>{name}</span>!
             </p>
           </div>
           <NewForm />

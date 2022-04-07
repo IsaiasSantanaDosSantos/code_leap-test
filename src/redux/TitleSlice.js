@@ -20,16 +20,3 @@ export const selectTitle = (state) => state.title;
 
 export default createTitle.reducer;
 
-/*
-changeTitle(state, { payload }) {
-      return { ...state, isPosted: true, name: payload };
-    },
-  
-
-2ª forma
-  reducers: {
-    changeTitle: (state) => {
-      state.isPosted = true
-    },
-  }
- */

@@ -19,9 +19,7 @@ function Post() {
   const { name } = useSelector(selectUser);
   //const { postTitle } = useSelector(selectTitle);
   const titlePost = useSelector((state) => state.title.name);
-
-  // Resolver:
-  // O titulo está indefinido, "parece" ser algo no TitleSlice.js ou Store.js..
+  const postsContent = useSelector((state) => state.content.name);
 
   return (
     <form className={styles.postsForm}>
@@ -58,6 +56,7 @@ function Post() {
             lineHeight: "16px",
             color: "#000000",
           }}
+          value={postsContent}
         />
       </Container>
     </form>
