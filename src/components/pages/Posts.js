@@ -2,7 +2,8 @@ import { Container, Grid } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styles from "./Posts.module.css";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/User";
+import { selectUser } from "../../redux/UserSlice";
+import { selectTitle } from "../../redux/TitleSlice";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 
@@ -16,26 +17,30 @@ function editPost() {
 
 function Post() {
   const { name } = useSelector(selectUser);
+  //const { postTitle } = useSelector(selectTitle);
+  const titlePost = useSelector((state) => state.title.name);
+
+  // Resolver:
+  // O titulo está indefinido, "parece" ser algo no TitleSlice.js ou Store.js..
 
   return (
     <form className={styles.postsForm}>
-      <Grid className={styles.containerTitle}>
-        <Grid item xs={8} justifyItems={"flex-start"}>
-          <h4 className={styles.postTitle}>Title</h4>
-        </Grid>
-        <Grid item xs={4} className={styles.iconsClass}>
-          <DeleteForeverIcon onClick={deletePost} />
-        </Grid>
-        <Grid item xs={4} className={styles.iconsClass}>
-          <EditIcon onClick={editPost} />
-        </Grid>
-      </Grid>
-      <div>
-        <p>@{name}</p>
+      <div className={styles.containerTitle}>
+        <div className={styles.containerPostTitle}>
+          <h4 className={styles.post_Title}>{titlePost}</h4>
+        </div>
+        <div className={styles.containerIcons}>
+          <div className={styles.iconsClass}>
+            <DeleteForeverIcon onClick={deletePost} />
+          </div>
+          <div className={styles.iconsClass}>
+            <EditIcon onClick={editPost} />
+          </div>
+        </div>
       </div>
+      <div>{<p>@{name}</p>}</div>
       <Container>
         <TextareaAutosize
-          fullWidth={true}
           aria-label="minimum height"
           minRows={8}
           style={{

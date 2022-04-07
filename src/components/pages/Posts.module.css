@@ -8,26 +8,35 @@
 
 .containerTitle {
     background-color: #000000;
+    padding: 0px 25px;
     display: flex;
-    position: relative;
-    height: 75px;
 }
 
-.postTitle {
+.containerPostTitle {
+    width: 90%;
+}
+
+.post_Title {
+    width: 100%;
     color: #FFFFFF;
     font-style: normal;
     font-weight: 700;
     font-size: 22px;
     line-height: 26px;
-    padding-left: 27px;
-    padding-right: 470px;
+    float: left;
+    display: inline;
+}
+
+.containerIcons {
+    width: 15%;
+    margin: auto;
 }
 
 .iconsClass {
     color: #fff;
-    font-size: 2.5em;
-    padding-right: 30px;
-    cursor: pointer;
+    display: inline;
+    float: right;
+    padding-left: 10px;
 }
 
 .iconsClass:hover {
@@ -49,16 +58,23 @@
     color: #777777;
 }
 
-@media (max-width: 730px) {
-    .postTitle {
-        
-        padding-right: 335px;
-    }
-}
 
 @media (max-width: 570px) {
-    .postTitle {
-        
-        padding-right: 205px;
+    .containerPostTitle {
+        width: 78%;
+    }
+
+    .containerIcons {
+        width: 22%;
+    }
+    
+    .iconsClass {
+        padding-left: 10px;
+    }
+
+    .post_Title {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
     }
 }
