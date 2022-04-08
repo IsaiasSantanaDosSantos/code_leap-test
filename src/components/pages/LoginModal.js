@@ -58,11 +58,10 @@ function ModalComp() {
     },
   });
 
-  function enterUser(e) {
-    e.preventDefault();
-    dispatch(changeUser(name))
+  const enterUser = () => {
+    dispatch(changeUser(name));
     navigator("/mainpage");
-  }
+  };
 
   return (
     <React.Fragment>
@@ -99,7 +98,7 @@ function ModalComp() {
               </Button>
             ) : (
               <Button
-                disabled={true}
+                disabled
                 className={styles.btnLogin}
                 sx={{
                   color: "#fff",
@@ -112,7 +111,6 @@ function ModalComp() {
                 }}
                 variant="contained"
                 color="primary"
-                onClick={enterUser}
               >
                 enter
               </Button>
