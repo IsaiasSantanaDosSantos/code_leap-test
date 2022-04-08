@@ -9,7 +9,7 @@ import {
 import { ThemeProvider } from "@emotion/react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styled from "@emotion/styled";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./MainPage.module.css";
 import { useDispatch } from "react-redux";
 import { changeTitle } from "../../redux/TitleSlice";
@@ -60,17 +60,16 @@ function NewForm() {
     },
   });
 
-  function createPost() {
+  const createPost = () => {
     dispatch(changeTitle(titlePost));
     dispatch(changePostsContent(postContent));
-    clear()
-  }
+    clearForm();
+  };
 
-  const clear = () => {
-    setTitlePost((titlePost) => [...titlePost = ""])
-    setPostContent((postContent) => [...postContent = ""])
-  }
- 
+  const clearForm = () => {
+    setTitlePost("");
+    setPostContent("");
+  };
 
   return (
     <form className={styles.newForm}>
