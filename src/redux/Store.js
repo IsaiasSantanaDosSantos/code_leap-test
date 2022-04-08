@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./UserSlice"
-import titleReducer from "./TitleSlice"
-import contentReducer from "./PostsContentSlice"
+import postListReducer from "./postListSlice"
 
 export default configureStore ({
     reducer:{
         user: userReducer,
-        title: titleReducer,
-        content: contentReducer,
+        postList: postListReducer,
     },
     
 })

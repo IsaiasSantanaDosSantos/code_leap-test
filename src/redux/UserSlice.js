@@ -1,43 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const slice = createSlice(
-  {
-    name: "user",
-    initialState: {
-      name: "",
-      isLogged: false,
+export const slice = createSlice({
+  name: "user",
+  initialState: {
+    name: localStorage.getItem("name") ?? "",
+    isLogged: localStorage.getItem("isLogged") ?? false,
+  },
+  reducers: {
+    changeUser(state, { payload }) {
+      localStorage.setItem("name", payload)
+      localStorage.setItem("isLogged", "true")
+      state.isLogged = true;
+      state.name = payload;
     },
-    reducers: {
-      changeUser(state, { payload }) {
-        return { ...state, isLogged: true, name: payload };
-      },
-      logout(state) {
-        return { ...state, isLogged: false, name: "" };
-      },
+    logout(state) {
+      localStorage.setItem("name", "")
+      localStorage.setItem("isLogged", false)
+      state.isLogged = false;
+      state.name = "";
     },
-  }
-  /*{
-    titlePost: "title",
-    initialState: {
-      titlePost: "",
-    },
-    reducer: {
-      changeUser(state, { payload }) {
-        return { ...state, isPosted: true, titlePost: payload };
-      },
-    },
-  }*/
-);
-
-/*
-titlePost;
-postContent
- */
+  },
+});
 
 export const { changeUser, logout } = slice.actions;
-//export const { changeTitle } = slice.actions;
 
 export const selectUser = (state) => state.user;
-//export const selectTitle = (state) => state.title;
 
 export default slice.reducer;

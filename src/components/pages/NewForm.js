@@ -9,11 +9,10 @@ import {
 import { ThemeProvider } from "@emotion/react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styled from "@emotion/styled";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./MainPage.module.css";
-import { useDispatch } from "react-redux";
-import { changeTitle } from "../../redux/TitleSlice";
-import { changePostsContent } from "../../redux/PostsContentSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { insertPost } from "../../redux/postListSlice";
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -47,6 +46,7 @@ const StyledTextField = styled(TextField)({
 });
 
 function NewForm() {
+  const loggedUserName = useSelector(state => state.user.name);
   const [titlePost, setTitlePost] = useState();
   const [postContent, setPostContent] = useState();
 
@@ -60,17 +60,21 @@ function NewForm() {
     },
   });
 
-  function createPost() {
-    dispatch(changeTitle(titlePost));
-    dispatch(changePostsContent(postContent));
-    clear()
-  }
+  const createPost = () => {
+    dispatch(
+      insertPost({
+        titlePost,
+        postContent,
+        author: loggedUserName,
+      })
+    );
+    clearForm();
+  };
 
-  const clear = () => {
-    setTitlePost((titlePost) => [...titlePost = ""])
-    setPostContent((postContent) => [...postContent = ""])
-  }
- 
+  const clearForm = () => {
+    setTitlePost("");
+    setPostContent("");
+  };
 
   return (
     <form className={styles.newForm}>
