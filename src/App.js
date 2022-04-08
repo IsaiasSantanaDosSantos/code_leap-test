@@ -1,15 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Initial from "./components/pages/Initial";
-import Login from "./components/pages/Login";
-import Main from "./components/pages/MainPage"
-
+import Main from "./components/pages/MainPage";
+import ModalComp from "./components/pages/LoginModal";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Initial />} />
-        <Route path="/login"element={<Login />} />
+        <Route path="/loginmodal" element={<ModalComp />} />
         <Route path="/mainpage" element={<Main />} />
       </Routes>
     </Router>
