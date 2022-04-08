@@ -1,27 +1,27 @@
-import { Container, Grid } from "@mui/material";
+import { Container} from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styles from "./Posts.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/UserSlice";
-import { selectTitle } from "../../redux/TitleSlice";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 
-function deletePost() {
+const deletePost = () => {
   alert("Do you want delete post?");
 }
 
-function editPost() {
+const editPost = () => {
   alert("Do you want edit post?");
 }
 
 function Post() {
   const { name } = useSelector(selectUser);
-  //const { postTitle } = useSelector(selectTitle);
   const titlePost = useSelector((state) => state.title.name);
   const postsContent = useSelector((state) => state.content.name);
+  
 
   return (
+    
     <form className={styles.postsForm}>
       <div className={styles.containerTitle}>
         <div className={styles.containerPostTitle}>
