@@ -12,8 +12,8 @@ import Posts from "./Posts";
 function MainPage() {
   const navigator = useNavigate();
   const dispatch = useDispatch();
-
   const { name } = useSelector(selectUser);
+  const [ showNewPost, setShowNewPost ] = useState(false)
 
   const theme = createTheme({
     palette: {
@@ -25,8 +25,10 @@ function MainPage() {
 
   function logoutMainPage() {
     dispatch(logout());
-    navigator("/login");
+    navigator("/loginmodal");
   }
+
+  
 
   return (
     <div className={styles.body}>
@@ -65,7 +67,8 @@ function MainPage() {
             </p>
           </div>
           <NewForm />
-          <Posts />
+          {showNewPost ? (<Posts 
+          />) : null }
         </Container>
       </div>
     </div>

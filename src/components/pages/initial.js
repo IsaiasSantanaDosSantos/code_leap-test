@@ -2,7 +2,7 @@ import { Container } from "@mui/material";
 import styles from "./Initial.module.css";
 import logo from "../img/logo_cl.png";
 import { useNavigate } from "react-router-dom";
-import { useCallBack, useEffect } from "react";
+import { useEffect } from "react";
 
 function Initial() {
   const navigator = useNavigate();
@@ -10,7 +10,7 @@ function Initial() {
   useEffect(() => {
     const nextPage = () => {
       setTimeout(() => {
-        navigator("/login");
+        navigator("/loginmodal");
       }, 2500);
     };
 
