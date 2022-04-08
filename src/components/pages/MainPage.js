@@ -13,7 +13,6 @@ function MainPage() {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const { name } = useSelector(selectUser);
-  const [showNewPost, setShowNewPost] = useState(false);
 
   const theme = createTheme({
     palette: {
@@ -71,7 +70,7 @@ function MainPage() {
             </p>
           </div>
           <NewForm />
-          {showNewPost ? <Posts /> : null}
+          <Posts />
         </Container>
       </div>
     </div>
