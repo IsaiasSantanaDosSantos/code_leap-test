@@ -1,6 +1,6 @@
 import { Container, Button, createTheme, Grid } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./MainPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ function MainPage() {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const { name } = useSelector(selectUser);
-  const [ showNewPost, setShowNewPost ] = useState(false)
+  const [showNewPost, setShowNewPost] = useState(false);
 
   const theme = createTheme({
     palette: {
@@ -23,12 +23,16 @@ function MainPage() {
     },
   });
 
-  function logoutMainPage() {
+  const logoutMainPage = () => {
     dispatch(logout());
     navigator("/loginmodal");
-  }
+  };
 
-  
+  useEffect(() => {
+    if (localStorage.getItem("isLogged") !== "true") {
+      navigator("/loginmodal");
+    }
+  }, [navigator]);
 
   return (
     <div className={styles.body}>
@@ -67,8 +71,7 @@ function MainPage() {
             </p>
           </div>
           <NewForm />
-          {showNewPost ? (<Posts 
-          />) : null }
+          {showNewPost ? <Posts /> : null}
         </Container>
       </div>
     </div>
