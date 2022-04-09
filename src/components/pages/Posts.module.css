@@ -47,15 +47,27 @@
 .iconsClass:active {
     color: #6e6c6c; 
 }
+.containernameAndTime {
+    padding: 0px 25px;
+    display: flex;
+}
+.containerAuthorName {
+    width: 80%;
+}
 
-
-
-.postsForm p {
-    padding-left: 27px;
+.containerAuthorName p {
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
     line-height: 21px;
+    color: #777777;
+}
+
+.timePost p {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: right;
     color: #777777;
 }
 
