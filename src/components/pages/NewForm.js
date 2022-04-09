@@ -46,7 +46,7 @@ const StyledTextField = styled(TextField)({
 });
 
 function NewForm() {
-  const loggedUserName = useSelector((state) => state.user.name);
+  const loggedUserName = useSelector(state => state.user.name);
   const [titlePost, setTitlePost] = useState();
   const [postContent, setPostContent] = useState();
 
@@ -60,26 +60,12 @@ function NewForm() {
     },
   });
 
-  let data = new Date();
-  let dia = String(data.getDate()).padStart(2, "0");
-  let mes = String(data.getMonth() + 1).padStart(2, "0");
-  let ano = data.getFullYear();
-
-  let hora = String(data.getHours()).padStart(2, "0"); // 0-23
-  let min = String(data.getMinutes()).padStart(2, "0"); // 0-59
-  let seg = String(data.getSeconds()).padStart(2, "0"); // 0-59
-  let date = dia + "/" + mes + "/" + ano + " Time " + hora + ":" + min + ":" + seg;
-
-  //Como mostrar a quanto tempo tem a postagem ao envés da data que foi postado
-  console.log(hora - hora); //???
-
   const createPost = () => {
     dispatch(
       insertPost({
         titlePost,
         postContent,
         author: loggedUserName,
-        date,
       })
     );
     clearForm();
@@ -147,7 +133,7 @@ function NewForm() {
             </Button>
           ) : (
             <Button
-              disabled
+              disabled={true}
               className={styles.btnLogin}
               sx={{
                 color: "#fff",

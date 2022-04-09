@@ -1,4 +1,4 @@
-import { Button, Container } from "@mui/material";
+import { Button, ButtonBase, Container } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styles from "./Posts.module.css";
 import { useSelector } from "react-redux";
@@ -49,16 +49,7 @@ function Post() {
                 </div>
               ) : null}
             </div>
-
-            <div className={styles.containernameAndTime}>
-              <div className={styles.containerAuthorName}>
-                {<p>@{post.author}</p>}
-              </div>
-              <div className={styles.timePost}>
-                <p>{post.date}</p>
-              </div>
-            </div>
-
+            <div>{<p>@{post.author}</p>}</div>
             <Container>
               <TextareaAutosize
                 aria-label="minimum height"
