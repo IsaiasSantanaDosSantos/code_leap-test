@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Initial />} />
-        <Route path="/loginmodal" element={<ModalComp/>} />
+        <Route path="/loginmodal" element={<ModalComp />} />
         <Route path="/mainpage" element={<Main />} />
         <Route path="/form" element={<Form />} />
       </Routes>
