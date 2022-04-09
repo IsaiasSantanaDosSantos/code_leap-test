@@ -1,6 +1,6 @@
 import { Container, Button, createTheme, Grid } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import styles from "./MainPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,6 +33,10 @@ function MainPage() {
     }
   }, [navigator]);
 
+
+     
+  
+
   return (
     <div className={styles.body}>
       <div className={styles.container}>
@@ -63,7 +67,7 @@ function MainPage() {
             </ThemeProvider>
           </Grid>
         </Grid>
-        <Container spacing={3} className={styles.contentContaiener}>
+        <Container className={styles.contentContaiener}>
           <div>
             <p className={styles.salutation}>
               Hello <span>{name}</span>!

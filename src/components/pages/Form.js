@@ -5,7 +5,7 @@ import {
   TextareaAutosize,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
+//import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import styles from "./Form.module.css";
@@ -43,22 +43,21 @@ const StyledTextField = styled(TextField)({
 
 function Form() {
   const postList = useSelector((state) => state.postList);
-  const postOwner = useSelector((state) => state.user.name);
-  //const [titlePost, setTitlePost] = useState();
-  //const [postContent, setPostContent] = useState();
-  //console.log(postList.postOwner)
+  
 
   return (
     <div className={styles.newForm}>
         {  postList.map((post) => (
-        <di>
+
+
+        {/*<div key={post.postContent}>
           <StyledTextField
             fullWidth={true} 
             variant="outlined"
             label="Title"
             name="name"
             placeholder="Hello world"
-            value={post.titlePost}
+            value={"oi"}
           />
           <TextareaAutosize
             aria-label="minimum height"
@@ -80,9 +79,12 @@ function Form() {
               color: "#000000",
             }}
             name="postsContent"
-            value={post.postContent}
+            value={"post.postContent"}
           />
-        </di>
+          </div>*/}
+
+
+
       ))}
       
     </div>
