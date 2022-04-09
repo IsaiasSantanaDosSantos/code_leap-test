@@ -11,7 +11,7 @@ export const postListSlice = createSlice({
     },
   },
 });
-
+//titlePost
 export const { insertPost } = postListSlice.actions;
 
 export const selectTitle = (state) => state.title;
