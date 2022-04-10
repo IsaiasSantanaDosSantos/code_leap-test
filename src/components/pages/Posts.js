@@ -45,7 +45,7 @@ const StyledTextField = styled(TextField)({
 });
 
 function Post() {
-  //const postList = useSelector((state) => state.postList);
+  const postList = useSelector((state) => state.postList);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
 
@@ -56,15 +56,12 @@ function Post() {
   };
 
   const confirmDelete = () => {
-    setIsDeleteModalVisible(false)
+    setIsDeleteModalVisible(false);
   };
 
   const editPost = () => {
     setIsEditModal(true);
   };
-
-  //Direto localStorage
-  const postList = JSON.parse(localStorage.getItem("postList") ?? []);
 
   const saveEdit = () => {
     setIsEditModal(false);
@@ -104,7 +101,6 @@ function Post() {
                 minRows={8}
                 style={{
                   width: "100%",
-                  marginTop: "20px",
                   background: "#FFFFFF",
                   border: "1px solid #777777",
                   boxSizing: "borderBox",
@@ -141,8 +137,7 @@ function Post() {
         </div>
       ) : null}
       {isEditModal ? (
-        <div className={styles.bodyDeleteModal 
-        }>
+        <div className={styles.bodyDeleteModal}>
           <div className={styles.editModal}>
             <div className={styles.editConfirmation}>
               <p>Edit item</p>
