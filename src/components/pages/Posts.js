@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   Button,
   Container,
@@ -6,9 +5,6 @@ import {
   outlinedInputClasses,
   TextField,
 } from "@mui/material";
-=======
-import { Button, ButtonBase, Container } from "@mui/material";
->>>>>>> d73ec294538c87faf4cb156bc5bf674ba3579e9f
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styles from "./Posts.module.css";
 import { useSelector } from "react-redux";
@@ -49,7 +45,7 @@ const StyledTextField = styled(TextField)({
 });
 
 function Post() {
-  //const postList = useSelector((state) => state.postList);
+  const postList = useSelector((state) => state.postList);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
 
@@ -60,30 +56,26 @@ function Post() {
   };
 
   const confirmDelete = () => {
-    setIsDeleteModalVisible(false)
+    setIsDeleteModalVisible(false);
   };
 
   const editPost = () => {
     setIsEditModal(true);
   };
 
-  //Direto localStorage
-  const postList = JSON.parse(localStorage.getItem("postList") ?? []);
-
   const saveEdit = () => {
     setIsEditModal(false);
   };
-
   return (
     <div>
       <div>
-        {postList.map((post) => (
-          <form key={post.date} className={styles.postsForm}>
+        {postList.map((idPost) => (
+          <form key={idPost.idPost} className={styles.postsForm}>
             <div className={styles.containerTitle}>
               <div className={styles.containerPostTitle}>
-                <h4 className={styles.post_Title}>{post.titlePost}</h4>
+                <h4 className={styles.post_Title}>{idPost.titlePost}</h4>
               </div>
-              {postOwner === post.author ? (
+              {postOwner === idPost.author ? (
                 <div className={styles.containerIcons}>
                   <div className={styles.iconsClass}>
                     <DeleteForeverIcon onClick={deletePost} />
@@ -94,25 +86,21 @@ function Post() {
                 </div>
               ) : null}
             </div>
-<<<<<<< HEAD
             <div className={styles.containernameAndTime}>
               <div className={styles.containerAuthorName}>
-                {<p>@{post.author}</p>}
+                {<p>@{idPost.author}</p>}
               </div>
               <div className={styles.timePost}>
-                <p>{post.date}</p>
+                <p>{idPost.date}</p>
               </div>
             </div>
-=======
-            <div>{<p>@{post.author}</p>}</div>
->>>>>>> d73ec294538c87faf4cb156bc5bf674ba3579e9f
             <Container>
               <TextareaAutosize
+                disabled
                 aria-label="minimum height"
                 minRows={8}
                 style={{
                   width: "100%",
-                  marginTop: "20px",
                   background: "#FFFFFF",
                   border: "1px solid #777777",
                   boxSizing: "borderBox",
@@ -125,7 +113,7 @@ function Post() {
                   lineHeight: "16px",
                   color: "#000000",
                 }}
-                value={post.postContent}
+                value={idPost.postContent}
               />
             </Container>
           </form>
@@ -149,45 +137,46 @@ function Post() {
         </div>
       ) : null}
       {isEditModal ? (
-        <div className={styles.bodyDeleteModal 
-        }>
+        <div className={styles.bodyDeleteModal}>
           <div className={styles.editModal}>
             <div className={styles.editConfirmation}>
               <p>Edit item</p>
             </div>
-            <div>
-              <StyledTextField
-                fullWidth={true}
-                variant="outlined"
-                label="Title"
-                name="name"
-                placeholder="Hello world"
-              />
-              <TextareaAutosize
-                aria-label="minimum height"
-                minRows={8}
-                placeholder="Content here"
-                style={{
-                  width: "100%",
-                  marginTop: "20px",
-                  background: "#FFFFFF",
-                  border: "1px solid #777777",
-                  boxSizing: "borderBox",
-                  borderRadius: "4px",
-                  padding: "10px",
-                  fontFamily: "Roboto",
-                  fontStyle: "normal",
-                  fontWeight: "400px",
-                  fontSize: "16px",
-                  lineHeight: "16px",
-                  color: "#000000",
-                }}
-                name="postsContent"
-              />
-              <div>
-                <p></p>
+            {postList.map((idPost) => (
+              <div key={idPost.idPost}>
+                <StyledTextField
+                  value={idPost.titlePost}
+                  fullWidth={true}
+                  variant="outlined"
+                  label="Title"
+                  name="name"
+                  placeholder="Hello world"
+                ></StyledTextField>
+                <TextareaAutosize
+                  value={idPost.postContent}
+                  aria-label="minimum height"
+                  minRows={8}
+                  placeholder="Content here"
+                  style={{
+                    width: "100%",
+                    marginTop: "20px",
+                    background: "#FFFFFF",
+                    border: "1px solid #777777",
+                    boxSizing: "borderBox",
+                    borderRadius: "4px",
+                    padding: "10px",
+                    fontFamily: "Roboto",
+                    fontStyle: "normal",
+                    fontWeight: "400px",
+                    fontSize: "16px",
+                    lineHeight: "16px",
+                    color: "#000000",
+                  }}
+                  name="postsContent"
+                ></TextareaAutosize>
               </div>
-            </div>
+            ))}
+
             <div className={styles.saveBtn}>
               <Button onClick={saveEdit}>save</Button>
             </div>

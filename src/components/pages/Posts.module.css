@@ -14,7 +14,7 @@
 }
 
 .containerPostTitle {
-    width: 90%;
+    width: 85%;
 }
 
 .post_Title {
@@ -29,6 +29,7 @@
 }
 
 .containerIcons {
+    display: flex;
     width: 15%;
     margin: auto;
 }
@@ -37,7 +38,7 @@
     color: #fff;
     display: inline;
     float: right;
-    padding-left: 10px;
+    padding-left: 15px;
 }
 
 .iconsClass:hover {
@@ -46,6 +47,22 @@
 
 .iconsClass:active {
     color: #6e6c6c; 
+}
+
+.containernameAndTime {
+    display: flex;
+    width: 100%;
+}
+
+.containerAuthorName {
+display: inline;
+width: 85%;
+}
+
+.timePost {
+    display: inline;
+    padding-right: 25px;
+    text-align: right;
 }
 
 
