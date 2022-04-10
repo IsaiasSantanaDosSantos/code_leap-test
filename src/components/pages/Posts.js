@@ -81,13 +81,13 @@ function Post() {
   return (
     <div>
       <div>
-        {postList.map((post) => (
-          <form key={post.idPost} className={styles.postsForm}>
+        {postList.map((idPost) => (
+          <form key={idPost.idPost} className={styles.postsForm}>
             <div className={styles.containerTitle}>
               <div className={styles.containerPostTitle}>
-                <h4 className={styles.post_Title}>{post.titlePost}</h4>
+                <h4 className={styles.post_Title}>{idPost.titlePost}</h4>
               </div>
-              {postOwner === post.author ? (
+              {postOwner === idPost.author ? (
                 <div className={styles.containerIcons}>
                   <div className={styles.iconsClass}>
                     <DeleteForeverIcon onClick={deletePost} />
@@ -100,10 +100,10 @@ function Post() {
             </div>
             <div className={styles.containernameAndTime}>
               <div className={styles.containerAuthorName}>
-                {<p>@{post.author}</p>}
+                {<p>@{idPost.author}</p>}
               </div>
               <div className={styles.timePost}>
-                <p>{post.date}</p>
+                <p>{idPost.date}</p>
               </div>
             </div>
             <Container>
@@ -125,7 +125,7 @@ function Post() {
                   lineHeight: "16px",
                   color: "#000000",
                 }}
-                value={post.postContent}
+                value={idPost.postContent}
               />
             </Container>
           </form>
@@ -155,17 +155,17 @@ function Post() {
               <p>Edit item</p>
             </div>
             {postList.map((idPost) => (
-              <div key={idPost}>
+              <div key={idPost.idPost}>
                 <StyledTextField
+                  value={idPost.titlePost}
                   fullWidth={true}
                   variant="outlined"
                   label="Title"
                   name="name"
                   placeholder="Hello world"
-                >
-                  {idPost.titlePost}
-                </StyledTextField>
+                ></StyledTextField>
                 <TextareaAutosize
+                  value={idPost.postContent}
                   aria-label="minimum height"
                   minRows={8}
                   placeholder="Content here"
@@ -185,9 +185,7 @@ function Post() {
                     color: "#000000",
                   }}
                   name="postsContent"
-                >
-                  {idPost.postContent}
-                </TextareaAutosize>
+                ></TextareaAutosize>
               </div>
             ))}
 
