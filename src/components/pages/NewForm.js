@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import styles from "./MainPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { insertPost } from "../../redux/postListSlice";
+//import Posts from "./Posts";
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -70,7 +71,14 @@ function NewForm() {
   let date = dia + "/" + mes + "/" + ano + "\n" + hora + ":" + min + ":" + seg;
 
   let idPost = data.getTime();
-
+  /*
+  const sendParentToChild = (idPost) => {
+    const editingPosts = insertPost.find((post) => post.idPost === idPost);
+    if (!editingPosts) return;
+    setTitlePost(editingPosts.titlePost);
+    setPostContent(editingPosts.postContent);
+  };
+*/
   const createPost = () => {
     dispatch(
       insertPost({
@@ -168,6 +176,7 @@ function NewForm() {
           </ThemeProvider>
         </Container>
       </form>
+      {/*<Posts></Posts>*/}
     </div>
   );
 }

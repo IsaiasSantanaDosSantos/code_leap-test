@@ -12,6 +12,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import { useState } from "react";
 import styled from "@emotion/styled";
+import NewForm from "./NewForm";
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -66,12 +67,22 @@ function Post() {
   const saveEdit = () => {
     setIsEditModal(false);
   };
-
+  /*
+  const sendParentToChild = () => {
+   
+    dispatch(
+      insertPost({
+        titlePost,
+        postContent,
+      })
+    );
+  };
+*/
   return (
     <div>
       <div>
         {postList.map((post) => (
-          <form key={post.date} className={styles.postsForm}>
+          <form key={post.idPost} className={styles.postsForm}>
             <div className={styles.containerTitle}>
               <div className={styles.containerPostTitle}>
                 <h4 className={styles.post_Title}>{post.titlePost}</h4>
@@ -97,6 +108,7 @@ function Post() {
             </div>
             <Container>
               <TextareaAutosize
+                disabled
                 aria-label="minimum height"
                 minRows={8}
                 style={{
@@ -142,45 +154,50 @@ function Post() {
             <div className={styles.editConfirmation}>
               <p>Edit item</p>
             </div>
-            <div>
-              <StyledTextField
-                fullWidth={true}
-                variant="outlined"
-                label="Title"
-                name="name"
-                placeholder="Hello world"
-              />
-              <TextareaAutosize
-                aria-label="minimum height"
-                minRows={8}
-                placeholder="Content here"
-                style={{
-                  width: "100%",
-                  marginTop: "20px",
-                  background: "#FFFFFF",
-                  border: "1px solid #777777",
-                  boxSizing: "borderBox",
-                  borderRadius: "4px",
-                  padding: "10px",
-                  fontFamily: "Roboto",
-                  fontStyle: "normal",
-                  fontWeight: "400px",
-                  fontSize: "16px",
-                  lineHeight: "16px",
-                  color: "#000000",
-                }}
-                name="postsContent"
-              />
-              <div>
-                <p></p>
+            {postList.map((idPost) => (
+              <div key={idPost}>
+                <StyledTextField
+                  fullWidth={true}
+                  variant="outlined"
+                  label="Title"
+                  name="name"
+                  placeholder="Hello world"
+                >
+                  {idPost.titlePost}
+                </StyledTextField>
+                <TextareaAutosize
+                  aria-label="minimum height"
+                  minRows={8}
+                  placeholder="Content here"
+                  style={{
+                    width: "100%",
+                    marginTop: "20px",
+                    background: "#FFFFFF",
+                    border: "1px solid #777777",
+                    boxSizing: "borderBox",
+                    borderRadius: "4px",
+                    padding: "10px",
+                    fontFamily: "Roboto",
+                    fontStyle: "normal",
+                    fontWeight: "400px",
+                    fontSize: "16px",
+                    lineHeight: "16px",
+                    color: "#000000",
+                  }}
+                  name="postsContent"
+                >
+                  {idPost.postContent}
+                </TextareaAutosize>
               </div>
-            </div>
+            ))}
+
             <div className={styles.saveBtn}>
               <Button onClick={saveEdit}>save</Button>
             </div>
           </div>
         </div>
       ) : null}
+      {/*<NewForm></NewForm>*/}
     </div>
   );
 }
