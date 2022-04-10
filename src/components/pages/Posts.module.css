@@ -93,7 +93,7 @@
 }
 
 
-.bodyModal {
+.bodyDeleteModal {
     position: fixed;
     background: rgba(119, 119, 119, 0.8);
     top: 0px;
@@ -107,6 +107,7 @@
 }
 
 .deleteModal {
+    position: relative;
     margin-top: 150px;
     background: #FFFFFF;
     width: 500px;

@@ -67,14 +67,14 @@ function NewForm() {
   let hora = String(data.getHours()).padStart(2, "0");
   let min = String(data.getMinutes()).padStart(2, "0");
   let seg = String(data.getSeconds()).padStart(2, "0");
-  let date =
-    dia + "/" + mes + "/" + ano + " Time " + hora + ":" + min + ":" + seg;
+  let date = dia + "/" + mes + "/" + ano + "\n" + hora + ":" + min + ":" + seg;
 
-  //let idPost = Math.floor(Math.random() * 99);
-   
+  let idPost = data.getTime();
+
   const createPost = () => {
     dispatch(
       insertPost({
+        idPost,
         titlePost,
         postContent,
         author: loggedUserName,
@@ -88,6 +88,9 @@ function NewForm() {
     setTitlePost("");
     setPostContent("");
   };
+
+  
+
 
   return (
     <div>
@@ -168,6 +171,7 @@ function NewForm() {
           </ThemeProvider>
         </Container>
       </form>
+      
     </div>
   );
 }

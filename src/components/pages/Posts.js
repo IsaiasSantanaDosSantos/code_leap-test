@@ -13,7 +13,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import { useState } from "react";
 import styled from "@emotion/styled";
 
-
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
     borderColor: "#777777",
@@ -46,7 +45,7 @@ const StyledTextField = styled(TextField)({
 });
 
 function Post() {
-  const postList = useSelector((state) => state.postList);
+  //const postList = useSelector((state) => state.postList);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
 
@@ -57,27 +56,25 @@ function Post() {
   };
 
   const confirmDelete = () => {
-    alert("Ok")
+    setIsDeleteModalVisible(false)
   };
-
-  
 
   const editPost = () => {
-    setIsEditModal(true)
- 
-
+    setIsEditModal(true);
   };
 
-  const savePost = () => {
-    setIsEditModal(false)
-    
-  }
+  //Direto localStorage
+  const postList = JSON.parse(localStorage.getItem("postList") ?? []);
+
+  const saveEdit = () => {
+    setIsEditModal(false);
+  };
 
   return (
     <div>
       <div>
         {postList.map((post) => (
-          <form key={post.postContent} className={styles.postsForm}>
+          <form key={post.date} className={styles.postsForm}>
             <div className={styles.containerTitle}>
               <div className={styles.containerPostTitle}>
                 <h4 className={styles.post_Title}>{post.titlePost}</h4>
@@ -93,7 +90,6 @@ function Post() {
                 </div>
               ) : null}
             </div>
-
             <div className={styles.containernameAndTime}>
               <div className={styles.containerAuthorName}>
                 {<p>@{post.author}</p>}
@@ -102,7 +98,6 @@ function Post() {
                 <p>{post.date}</p>
               </div>
             </div>
-
             <Container>
               <TextareaAutosize
                 aria-label="minimum height"
@@ -146,55 +141,47 @@ function Post() {
         </div>
       ) : null}
       {isEditModal ? (
-        <div className={styles.bodyModal}>
+        <div className={styles.bodyDeleteModal 
+        }>
           <div className={styles.editModal}>
             <div className={styles.editConfirmation}>
               <p>Edit item</p>
             </div>
-            {/*<Form />*/}
-
-
-
-
-
-            {postList.map((post) => (
-              <div key={post.titlePost}>
-                <StyledTextField
-                  fullWidth={true}
-                  variant="outlined"
-                  label="Title"
-                  name="name"
-                  placeholder="Hello world"
-                  value={post.titlePost}/>
-                  
-                
-                <TextareaAutosize
-                  aria-label="minimum height"
-                  minRows={8}
-                  placeholder="Content here"
-                  style={{
-                    width: "100%",
-                    marginTop: "20px",
-                    background: "#FFFFFF",
-                    border: "1px solid #777777",
-                    boxSizing: "borderBox",
-                    borderRadius: "4px",
-                    padding: "10px",
-                    fontFamily: "Roboto",
-                    fontStyle: "normal",
-                    fontWeight: "400px",
-                    fontSize: "16px",
-                    lineHeight: "16px",
-                    color: "#000000",
-                  }}
-                  name="postsContent"
-                  value={post.postContent}/>
-                  
+            <div>
+              <StyledTextField
+                fullWidth={true}
+                variant="outlined"
+                label="Title"
+                name="name"
+                placeholder="Hello world"
+              />
+              <TextareaAutosize
+                aria-label="minimum height"
+                minRows={8}
+                placeholder="Content here"
+                style={{
+                  width: "100%",
+                  marginTop: "20px",
+                  background: "#FFFFFF",
+                  border: "1px solid #777777",
+                  boxSizing: "borderBox",
+                  borderRadius: "4px",
+                  padding: "10px",
+                  fontFamily: "Roboto",
+                  fontStyle: "normal",
+                  fontWeight: "400px",
+                  fontSize: "16px",
+                  lineHeight: "16px",
+                  color: "#000000",
+                }}
+                name="postsContent"
+              />
+              <div>
+                <p></p>
               </div>
-            ))}
-
+            </div>
             <div className={styles.saveBtn}>
-              <Button onClick={savePost}>save</Button>
+              <Button onClick={saveEdit}>save</Button>
             </div>
           </div>
         </div>
