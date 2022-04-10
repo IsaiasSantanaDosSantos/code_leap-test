@@ -1,40 +1,85 @@
+<<<<<<< HEAD
 import { Button, ButtonBase, Container } from "@mui/material";
+=======
+import {
+  Button,
+  Container,
+  inputLabelClasses,
+  outlinedInputClasses,
+  TextField,
+} from "@mui/material";
+>>>>>>> 9b62d39b23699c6955559902f14ec058bf8725db
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styles from "./Posts.module.css";
 import { useSelector } from "react-redux";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import { useState } from "react";
-import Form from "./Form";
+import styled from "@emotion/styled";
+
+const StyledTextField = styled(TextField)({
+  [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
+    borderColor: "#777777",
+  },
+  [`& .${outlinedInputClasses.root}.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]:
+    {
+      borderColor: "#777777",
+    },
+  [`&:hover .${outlinedInputClasses.input}`]: {
+    color: "#000000",
+  },
+  [`& .${outlinedInputClasses.root}.${outlinedInputClasses.focused} .${outlinedInputClasses.input}`]:
+    {
+      color: "#777777",
+    },
+  [`& .${inputLabelClasses.outlined}`]: {
+    color: "#000000",
+  },
+  [`&:hover .${inputLabelClasses.outlined}`]: {
+    color: "#000000",
+  },
+  [`& .${inputLabelClasses.outlined}.${inputLabelClasses.focused}`]: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: "16px",
+    lineHeight: "19px",
+    color: "#000000",
+  },
+});
 
 function Post() {
-  const postList = useSelector((state) => state.postList);
+  //const postList = useSelector((state) => state.postList);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
+
   const postOwner = useSelector((state) => state.user.name);
+
   const deletePost = () => {
     setIsDeleteModalVisible(true);
   };
 
   const confirmDelete = () => {
-    console.log(postOwner);
+    setIsDeleteModalVisible(false)
   };
-
-  //let item = JSON.parse(localStorage.getItem("postList"));
-  /*let myArray = item;
-    let newArray = myArray.filter((item) => post.titlePost !== nameSearch);
-    localStorage.setItem("dadosPac", JSON.stringify(newArray)); */
 
   const editPost = () => {
     setIsEditModal(true);
+  };
+
+  //Direto localStorage
+  const postList = JSON.parse(localStorage.getItem("postList") ?? []);
+
+  const saveEdit = () => {
+    setIsEditModal(false);
   };
 
   return (
     <div>
       <div>
         {postList.map((post) => (
-          <form className={styles.postsForm}>
-            <div key={post} className={styles.containerTitle}>
+          <form key={post.date} className={styles.postsForm}>
+            <div className={styles.containerTitle}>
               <div className={styles.containerPostTitle}>
                 <h4 className={styles.post_Title}>{post.titlePost}</h4>
               </div>
@@ -49,7 +94,18 @@ function Post() {
                 </div>
               ) : null}
             </div>
+<<<<<<< HEAD
             <div>{<p>@{post.author}</p>}</div>
+=======
+            <div className={styles.containernameAndTime}>
+              <div className={styles.containerAuthorName}>
+                {<p>@{post.author}</p>}
+              </div>
+              <div className={styles.timePost}>
+                <p>{post.date}</p>
+              </div>
+            </div>
+>>>>>>> 9b62d39b23699c6955559902f14ec058bf8725db
             <Container>
               <TextareaAutosize
                 aria-label="minimum height"
@@ -93,14 +149,47 @@ function Post() {
         </div>
       ) : null}
       {isEditModal ? (
-        <div className={styles.bodyModal}>
+        <div className={styles.bodyDeleteModal 
+        }>
           <div className={styles.editModal}>
             <div className={styles.editConfirmation}>
               <p>Edit item</p>
             </div>
-            <Form />
+            <div>
+              <StyledTextField
+                fullWidth={true}
+                variant="outlined"
+                label="Title"
+                name="name"
+                placeholder="Hello world"
+              />
+              <TextareaAutosize
+                aria-label="minimum height"
+                minRows={8}
+                placeholder="Content here"
+                style={{
+                  width: "100%",
+                  marginTop: "20px",
+                  background: "#FFFFFF",
+                  border: "1px solid #777777",
+                  boxSizing: "borderBox",
+                  borderRadius: "4px",
+                  padding: "10px",
+                  fontFamily: "Roboto",
+                  fontStyle: "normal",
+                  fontWeight: "400px",
+                  fontSize: "16px",
+                  lineHeight: "16px",
+                  color: "#000000",
+                }}
+                name="postsContent"
+              />
+              <div>
+                <p></p>
+              </div>
+            </div>
             <div className={styles.saveBtn}>
-              <Button>save</Button>
+              <Button onClick={saveEdit}>save</Button>
             </div>
           </div>
         </div>
