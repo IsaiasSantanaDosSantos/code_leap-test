@@ -12,7 +12,6 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import NewForm from "./NewForm";
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
@@ -67,17 +66,6 @@ function Post() {
   const saveEdit = () => {
     setIsEditModal(false);
   };
-  /*
-  const sendParentToChild = () => {
-   
-    dispatch(
-      insertPost({
-        titlePost,
-        postContent,
-      })
-    );
-  };
-*/
   return (
     <div>
       <div>
@@ -195,7 +183,6 @@ function Post() {
           </div>
         </div>
       ) : null}
-      {/*<NewForm></NewForm>*/}
     </div>
   );
 }
