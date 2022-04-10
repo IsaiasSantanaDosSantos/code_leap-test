@@ -142,41 +142,36 @@ function Post() {
             <div className={styles.editConfirmation}>
               <p>Edit item</p>
             </div>
-            {postList.map((idPost) => (
-              <div key={idPost.idPost}>
-                <StyledTextField
-                  value={idPost.titlePost}
-                  fullWidth={true}
-                  variant="outlined"
-                  label="Title"
-                  name="name"
-                  placeholder="Hello world"
-                ></StyledTextField>
-                <TextareaAutosize
-                  value={idPost.postContent}
-                  aria-label="minimum height"
-                  minRows={8}
-                  placeholder="Content here"
-                  style={{
-                    width: "100%",
-                    marginTop: "20px",
-                    background: "#FFFFFF",
-                    border: "1px solid #777777",
-                    boxSizing: "borderBox",
-                    borderRadius: "4px",
-                    padding: "10px",
-                    fontFamily: "Roboto",
-                    fontStyle: "normal",
-                    fontWeight: "400px",
-                    fontSize: "16px",
-                    lineHeight: "16px",
-                    color: "#000000",
-                  }}
-                  name="postsContent"
-                ></TextareaAutosize>
-              </div>
-            ))}
-
+            <div>
+              <StyledTextField
+                fullWidth={true}
+                variant="outlined"
+                label="Title"
+                name="name"
+                placeholder="Hello world"
+              ></StyledTextField>
+              <TextareaAutosize
+                aria-label="minimum height"
+                minRows={8}
+                placeholder="Content here"
+                style={{
+                  width: "100%",
+                  marginTop: "20px",
+                  background: "#FFFFFF",
+                  border: "1px solid #777777",
+                  boxSizing: "borderBox",
+                  borderRadius: "4px",
+                  padding: "10px",
+                  fontFamily: "Roboto",
+                  fontStyle: "normal",
+                  fontWeight: "400px",
+                  fontSize: "16px",
+                  lineHeight: "16px",
+                  color: "#000000",
+                }}
+                name="postsContent"
+              ></TextareaAutosize>
+            </div>
             <div className={styles.saveBtn}>
               <Button onClick={saveEdit}>save</Button>
             </div>
