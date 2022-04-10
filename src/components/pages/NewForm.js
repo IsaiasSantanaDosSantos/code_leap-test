@@ -46,7 +46,7 @@ const StyledTextField = styled(TextField)({
 });
 
 function NewForm() {
-  const loggedUserName = useSelector(state => state.user.name);
+  const loggedUserName = useSelector((state) => state.user.name);
   const [titlePost, setTitlePost] = useState();
   const [postContent, setPostContent] = useState();
 
@@ -60,7 +60,6 @@ function NewForm() {
     },
   });
 
-<<<<<<< HEAD
   let data = new Date();
   let dia = String(data.getDate()).padStart(2, "0");
   let mes = String(data.getMonth() + 1).padStart(2, "0");
@@ -72,8 +71,6 @@ function NewForm() {
 
   let idPost = data.getTime();
 
-=======
->>>>>>> 99e521f50e06c76d7859897306a5b71ad2ef01d5
   const createPost = () => {
     dispatch(
       insertPost({
@@ -81,6 +78,7 @@ function NewForm() {
         titlePost,
         postContent,
         author: loggedUserName,
+        date,
       })
     );
     clearForm();
@@ -91,92 +89,7 @@ function NewForm() {
     setPostContent("");
   };
 
-  
-
-
   return (
-<<<<<<< HEAD
-    <div>
-      <form className={styles.newForm}>
-        <Container spacing={4}>
-          <p>What's on your mind?</p>
-          <StyledTextField
-            fullWidth={true}
-            variant="outlined"
-            label="Title"
-            name="name"
-            placeholder="Hello world"
-            value={titlePost}
-            onChange={(e) => setTitlePost(e.target.value)}
-          />
-          <TextareaAutosize
-            aria-label="minimum height"
-            minRows={8}
-            placeholder="Content here"
-            style={{
-              width: "100%",
-              marginTop: "20px",
-              background: "#FFFFFF",
-              border: "1px solid #777777",
-              boxSizing: "borderBox",
-              borderRadius: "4px",
-              padding: "10px",
-              fontFamily: "Roboto",
-              fontStyle: "normal",
-              fontWeight: "400px",
-              fontSize: "16px",
-              lineHeight: "16px",
-              color: "#000000",
-            }}
-            name="postsContent"
-            value={postContent}
-            onChange={(e) => setPostContent(e.target.value)}
-          />
-          <ThemeProvider theme={theme}>
-            {titlePost && postContent ? (
-              <Button
-                className={styles.btnLogin}
-                sx={{
-                  color: "#fff",
-                  background: "#000000",
-                  borderRadius: "0",
-                  width: "111px",
-                  height: "33px",
-                  marginTop: "20px",
-                  float: "right",
-                }}
-                variant="contained"
-                color="primary"
-                onClick={createPost}
-              >
-                create
-              </Button>
-            ) : (
-              <Button
-                disabled
-                className={styles.btnLogin}
-                sx={{
-                  color: "#fff",
-                  background: "#000000",
-                  borderRadius: "0",
-                  width: "111px",
-                  height: "33px",
-                  marginTop: "20px",
-                  float: "right",
-                }}
-                variant="contained"
-                color="primary"
-                onClick={createPost}
-              >
-                create
-              </Button>
-            )}
-          </ThemeProvider>
-        </Container>
-      </form>
-      
-    </div>
-=======
     <form className={styles.newForm}>
       <Container spacing={4}>
         <p>What's on your mind?</p>
@@ -254,7 +167,6 @@ function NewForm() {
         </ThemeProvider>
       </Container>
     </form>
->>>>>>> 99e521f50e06c76d7859897306a5b71ad2ef01d5
   );
 }
 
