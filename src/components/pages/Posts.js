@@ -142,10 +142,9 @@ function Post() {
             <div className={styles.editConfirmation}>
               <p>Edit item</p>
             </div>
-            {postList.map((idPost) => (
-              <div key={idPost.idPost}>
+            {/*{postList.map((idPost) => (*/}
+              <div >
                 <StyledTextField
-                  value={idPost.titlePost}
                   fullWidth={true}
                   variant="outlined"
                   label="Title"
@@ -153,7 +152,6 @@ function Post() {
                   placeholder="Hello world"
                 ></StyledTextField>
                 <TextareaAutosize
-                  value={idPost.postContent}
                   aria-label="minimum height"
                   minRows={8}
                   placeholder="Content here"
@@ -175,7 +173,7 @@ function Post() {
                   name="postsContent"
                 ></TextareaAutosize>
               </div>
-            ))}
+            {/*))}*/}
 
             <div className={styles.saveBtn}>
               <Button onClick={saveEdit}>save</Button>
