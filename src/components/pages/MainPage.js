@@ -70,7 +70,7 @@ function MainPage() {
         <Container className={styles.contentContaiener}>
           <div>
             <p className={styles.salutation}>
-              Hello <span>{name}</span>!
+              Hello, <span>{name}</span>!
             </p>
           </div>
           <NewForm />
