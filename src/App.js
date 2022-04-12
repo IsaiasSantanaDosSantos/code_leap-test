@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Initial from "./components/pages/initial";
-import MainPage from "./components/pages/mainPage";
-import ModalComp from "./components/pages/loginModal";
+import Initial from "./components/pages/Initial";
+import MainPage from "./components/pages/MainPage";
+import ModalComp from "./components/pages/LoginModal";
 
 function App() {
   return (

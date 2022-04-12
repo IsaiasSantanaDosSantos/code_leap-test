@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changeUser } from "../../redux/UserSlice";
 
-import styles from "./loginModal.module.css";
+import styles from "./LoginModal.module.css";
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {

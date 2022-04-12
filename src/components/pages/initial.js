@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import styles from "./initial.module.css";
+import styles from "./Initial.module.css";
 import logo from "../img/logo_cl.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./UserSlice"
-import postListReducer from "./postListSlice"
+import postListReducer from "./PostListSlice"
 
 export default configureStore ({
     reducer:{
