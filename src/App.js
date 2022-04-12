@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Initial from "./components/pages/initial";
-import Main from "./components/pages/mainPage";
+import MainPage from "./components/pages/mainPage";
 import ModalComp from "./components/pages/loginModal";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Initial />} />
         <Route path="/loginmodal" element={<ModalComp />} />
-        <Route path="/mainpage" element={<Main />} />
+        <Route path="/mainpage" element={<MainPage />} />
       </Routes>
     </Router>
   );
