@@ -46,7 +46,7 @@ const StyledTextField = styled(TextField)({
 });
 
 function NewForm() {
-  const loggedUserName = useSelector(state => state.user.name);
+  const loggedUserName = useSelector((state) => state.user.name);
   const [titlePost, setTitlePost] = useState();
   const [postContent, setPostContent] = useState();
 
@@ -60,7 +60,6 @@ function NewForm() {
     },
   });
 
-<<<<<<< HEAD
   let data = new Date();
   let dia = String(data.getDate()).padStart(2, "0");
   let mes = String(data.getMonth() + 1).padStart(2, "0");
@@ -72,8 +71,6 @@ function NewForm() {
 
   let idPost = data.getTime();
 
-=======
->>>>>>> parent of 1a3605c (build: show date in posts.)
   const createPost = () => {
     dispatch(
       insertPost({
@@ -81,6 +78,7 @@ function NewForm() {
         titlePost,
         postContent,
         author: loggedUserName,
+        date,
       })
     );
     clearForm();
@@ -163,7 +161,7 @@ function NewForm() {
               color="primary"
               onClick={createPost}
             >
-              CREATE
+              create
             </Button>
           )}
         </ThemeProvider>

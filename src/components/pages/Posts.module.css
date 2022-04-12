@@ -1,4 +1,3 @@
-
 .postsForm {
     background: #FFFFFF;
     border: 1px solid #999999;
@@ -48,7 +47,6 @@
 .iconsClass:active {
     color: #6e6c6c; 
 }
-<<<<<<< HEAD
 
 .containernameAndTime {
     display: flex;
@@ -66,9 +64,6 @@ width: 85%;
     text-align: right;
 }
 
-=======
-
->>>>>>> parent of 1a3605c (build: show date in posts.)
 
 
 .postsForm p {
@@ -199,4 +194,3 @@ width: 85%;
         margin-right: 15px;
       }
 }
-    

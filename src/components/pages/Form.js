@@ -6,7 +6,11 @@ import {
   TextField,
 } from "@mui/material";
 <<<<<<< HEAD
+<<<<<<< HEAD
 //import { useState } from "react";
+=======
+import { useState } from "react";
+>>>>>>> parent of 045e7cb (chore: update in the code.)
 import { useSelector } from "react-redux";
 =======
 import { useState } from "react";
@@ -48,21 +52,22 @@ const StyledTextField = styled(TextField)({
 function Form() {
 <<<<<<< HEAD
   const postList = useSelector((state) => state.postList);
-  
+  const postOwner = useSelector((state) => state.user.name);
+  //const [titlePost, setTitlePost] = useState();
+  //const [postContent, setPostContent] = useState();
+  //console.log(postList.postOwner)
 
   return (
     <div className={styles.newForm}>
         {  postList.map((post) => (
-
-
-        {/*<div key={post.postContent}>
+        <di>
           <StyledTextField
             fullWidth={true} 
             variant="outlined"
             label="Title"
             name="name"
             placeholder="Hello world"
-            value={"oi"}
+            value={post.titlePost}
           />
           <TextareaAutosize
             aria-label="minimum height"
@@ -84,12 +89,9 @@ function Form() {
               color: "#000000",
             }}
             name="postsContent"
-            value={"post.postContent"}
+            value={post.postContent}
           />
-          </div>*/}
-
-
-
+        </di>
       ))}
       
 =======

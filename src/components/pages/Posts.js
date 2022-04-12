@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   Button,
   Container,
@@ -6,9 +5,6 @@ import {
   outlinedInputClasses,
   TextField,
 } from "@mui/material";
-=======
-import { Button, ButtonBase, Container } from "@mui/material";
->>>>>>> parent of 1a3605c (build: show date in posts.)
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styles from "./posts.module.css";
 import { useSelector } from "react-redux";
@@ -90,7 +86,6 @@ function Post() {
                 </div>
               ) : null}
             </div>
-<<<<<<< HEAD
             <div className={styles.containernameAndTime}>
               <div className={styles.containerAuthorName}>
                 {<p>@{idPost.author}</p>}
@@ -99,9 +94,6 @@ function Post() {
                 <p>{idPost.date}</p>
               </div>
             </div>
-=======
-            <div>{<p>@{post.author}</p>}</div>
->>>>>>> parent of 1a3605c (build: show date in posts.)
             <Container>
               <TextareaAutosize
                 disabled
