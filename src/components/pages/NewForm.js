@@ -10,9 +10,9 @@ import { ThemeProvider } from "@emotion/react";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import styles from "./mainPage.module.css";
+import styles from "./MainPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { insertPost } from "../../redux/postListSlice";
+import { insertPost } from "../../redux/PostListSlice";
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {

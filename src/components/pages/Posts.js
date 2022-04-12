@@ -6,7 +6,7 @@ import {
   TextField,
 } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import styles from "./posts.module.css";
+import styles from "./Posts.module.css";
 import { useSelector } from "react-redux";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";

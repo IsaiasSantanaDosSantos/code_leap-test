@@ -2,12 +2,12 @@ import { Container, Button, createTheme, Grid } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import React, { useEffect } from "react";
 
-import styles from "./mainPage.module.css";
+import styles from "./MainPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
-import NewForm from "./newForm";
-import Posts from "./posts";
+import NewForm from "./NewForm";
+import Posts from "./Posts";
 
 function MainPage() {
   const navigator = useNavigate();
