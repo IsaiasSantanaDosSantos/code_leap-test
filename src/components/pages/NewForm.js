@@ -161,7 +161,7 @@ function NewForm() {
               color="primary"
               onClick={createPost}
             >
-              create
+              CREATE
             </Button>
           )}
         </ThemeProvider>
