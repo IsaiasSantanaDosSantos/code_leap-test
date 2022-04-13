@@ -12,7 +12,7 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import styles from "./MainPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { insertPost } from "../../redux/PostListSlice";
+import { insertPost } from "../../redux/postListSlice";
 
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {

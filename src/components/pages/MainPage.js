@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 import styles from "./MainPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectUser } from "../../redux/UserSlice";
+import { logout, selectUser } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import NewForm from "./NewForm";
 import Posts from "./Posts";
