@@ -9,10 +9,17 @@ export const postListSlice = createSlice({
       //state.push(payload)
       return [...state, payload];
     },
+    deletePost(state, { payload }) {
+      const listWithPostDeleted = state.filter(
+        (i) => i.idPost !== payload.idPost
+      );
+      localStorage.setItem("postList", JSON.stringify(listWithPostDeleted));
+      return listWithPostDeleted;
+    },
   },
 });
 
-export const { insertPost } = postListSlice.actions;
+export const { insertPost, deletePost } = postListSlice.actions;
 
 export const selectTitle = (state) => state.title;
 
