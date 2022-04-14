@@ -10,11 +10,10 @@ import styles from "./Posts.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
-
 import { useState } from "react";
 import styled from "@emotion/styled";
 import { deletePost } from "../../redux/postListSlice";
-
+import { insertPost } from "../../redux/postListSlice";
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
     borderColor: "#777777",
@@ -68,11 +67,13 @@ function Post() {
 
   const editPost = () => {
     setIsEditModal(true);
+
   };
 
   const saveEdit = () => {
     setIsEditModal(false);
   };
+
   return (
     <div>
       <div>
@@ -149,7 +150,8 @@ function Post() {
             <div className={styles.editConfirmation}>
               <p>Edit item</p>
             </div>
-            {/*{postList.map((idPost) => (*/}
+            {/*
+            {postList.map((idPost) => (*/}
             <div>
               <StyledTextField
                 fullWidth={true}
@@ -157,7 +159,7 @@ function Post() {
                 label="Title"
                 name="name"
                 placeholder="Hello world"
-              ></StyledTextField>
+              />
               <TextareaAutosize
                 aria-label="minimum height"
                 minRows={8}
@@ -178,7 +180,7 @@ function Post() {
                   color: "#000000",
                 }}
                 name="postsContent"
-              ></TextareaAutosize>
+              />
             </div>
             {/*))}*/}
 

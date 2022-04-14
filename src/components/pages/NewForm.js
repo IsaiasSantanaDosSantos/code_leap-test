@@ -60,16 +60,16 @@ function NewForm() {
     },
   });
 
-  let data = new Date();
-  let dia = String(data.getDate()).padStart(2, "0");
-  let mes = String(data.getMonth() + 1).padStart(2, "0");
-  let ano = data.getFullYear();
-  let hora = String(data.getHours()).padStart(2, "0");
-  let min = String(data.getMinutes()).padStart(2, "0");
-  let seg = String(data.getSeconds()).padStart(2, "0");
-  let date = dia + "/" + mes + "/" + ano + "\n" + hora + ":" + min + ":" + seg;
+  let date = new Date();
+  let day = String(date.getDate()).padStart(2, "0");
+  let month = String(date.getMonth() + 1).padStart(2, "0");
+  let year = date.getFullYear();
+  let hour = String(date.getHours()).padStart(2, "0");
+  let min = String(date.getMinutes()).padStart(2, "0");
+  let sec = String(date.getSeconds()).padStart(2, "0");
+  let postMoment = day + "/" + month + "/" + year +"-"+ hour + ":" + min + ":" + sec;
 
-  let idPost = data.getTime();
+  let idPost = date.getTime();
 
   const createPost = () => {
     dispatch(
@@ -78,7 +78,7 @@ function NewForm() {
         titlePost,
         postContent,
         author: loggedUserName,
-        date,
+        postMoment,
       })
     );
     clearForm();
