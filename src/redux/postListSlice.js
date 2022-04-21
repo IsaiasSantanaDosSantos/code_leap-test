@@ -16,10 +16,18 @@ export const postListSlice = createSlice({
       localStorage.setItem("postList", JSON.stringify(listWithPostDeleted));
       return listWithPostDeleted;
     },
+    updatePost(state, { payload }) {
+      const listWithPostEdited = state.map((idPost) => {
+        if (idPost.idPost === payload.idPost) {
+          idPost.titlePost = payload.titlePost;
+          idPost.postContent = payload.postContent;
+        }
+      });
+    },
   },
 });
 
-export const { insertPost, deletePost } = postListSlice.actions;
+export const { insertPost, deletePost, updatePost } = postListSlice.actions;
 
 export const selectTitle = (state) => state.title;
 

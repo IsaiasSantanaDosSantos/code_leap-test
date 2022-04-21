@@ -12,8 +12,8 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import { deletePost } from "../../redux/postListSlice";
-import { insertPost } from "../../redux/postListSlice";
+import { deletePost, updatePost } from "../../redux/postListSlice";
+
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
     borderColor: "#777777",
@@ -46,10 +46,13 @@ const StyledTextField = styled(TextField)({
 });
 
 function Post() {
-  const postList = useSelector((state) => state.postList);
   const [postToBeDeleted, setPostToBeDeleted] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
+  const [newPostTitle, setNewPostTitle] = useState("");
+  const [newPostContent, setNewPostContet] = useState("");
   const postOwner = useSelector((state) => state.user.name);
+  const postList = useSelector((state) => state.postList);
+
   const dispatch = useDispatch();
 
   const selectPostToBeDeleted = (idPost) => {
@@ -64,16 +67,13 @@ function Post() {
   const cancelDeletion = () => {
     setPostToBeDeleted(undefined);
   };
-
-  const editPost = () => {
-    setIsEditModal(true);
-
-  };
-
+/*
   const saveEdit = () => {
+   dispatch(updatePost(newPostTitle, newPostContent));
     setIsEditModal(false);
+    console.log(postList);
   };
-
+*/
   return (
     <div>
       <div>
@@ -91,17 +91,87 @@ function Post() {
                     />
                   </div>
                   <div className={styles.iconsClass}>
-                    <EditIcon onClick={editPost} />
+                    <EditIcon
+                      onClick={() => {setIsEditModal(true); }}
+                    />
                   </div>
                 </div>
               ) : null}
             </div>
+
+
+
+            {isEditModal ? (
+              <div className={styles.bodyDeleteModal}>
+                <div className={styles.editModal}>
+                  <div className={styles.editConfirmation}>
+                    <p>Edit item</p>
+                  </div>
+
+                  {/*    TEST     
+
+                    vídeo: https://www.youtube.com/watch?v=bml92jhF4t8
+
+                    */}
+                  <div>
+                    <StyledTextField
+                      fullWidth={true}
+                      variant="outlined"
+                      label="Title"
+                      name="title"
+                      placeholder="Hello world"
+                      onChange={(e) => setNewPostTitle(e.target.value)}
+                    />
+                    <TextareaAutosize
+                      aria-label="minimum height"
+                      minRows={8}
+                      placeholder="Content here"
+                      style={{
+                        width: "100%",
+                        marginTop: "20px",
+                        background: "#FFFFFF",
+                        border: "1px solid #777777",
+                        boxSizing: "borderBox",
+                        borderRadius: "4px",
+                        padding: "10px",
+                        fontFamily: "Roboto",
+                        fontStyle: "normal",
+                        fontWeight: "400px",
+                        fontSize: "16px",
+                        lineHeight: "16px",
+                        color: "#000000",
+                      }}
+                      name="postsContent"
+                      onChange={(e) => setNewPostContet(e.target.value)}
+                    />
+                  </div>
+
+                  {/*  FINISH TEST     */}
+
+                  <div className={styles.saveBtn}>
+                    <Button onClick={() => {
+                        dispatch(
+                          updatePost({
+                            idPost: idPost.idPost,
+                            titlePost: newPostTitle,
+                            postContent: newPostContent,
+                          })
+                        );
+                        setIsEditModal(false);
+                      }}>save</Button>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+
+
+
             <div className={styles.containernameAndTime}>
               <div className={styles.containerAuthorName}>
                 {<p>@{idPost.author}</p>}
               </div>
               <div className={styles.timePost}>
-                <p>{idPost.date}</p>
+                <p>{idPost.postMoment}</p>
               </div>
             </div>
             <Container>
@@ -126,6 +196,8 @@ function Post() {
                 value={idPost.postContent}
               />
             </Container>
+
+            
           </form>
         ))}
       </div>
@@ -140,52 +212,6 @@ function Post() {
                 <Button onClick={cancelDeletion}>cancelar</Button>
                 <Button onClick={confirmDelete}>ok</Button>
               </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
-      {isEditModal ? (
-        <div className={styles.bodyDeleteModal}>
-          <div className={styles.editModal}>
-            <div className={styles.editConfirmation}>
-              <p>Edit item</p>
-            </div>
-            {/*
-            {postList.map((idPost) => (*/}
-            <div>
-              <StyledTextField
-                fullWidth={true}
-                variant="outlined"
-                label="Title"
-                name="name"
-                placeholder="Hello world"
-              />
-              <TextareaAutosize
-                aria-label="minimum height"
-                minRows={8}
-                placeholder="Content here"
-                style={{
-                  width: "100%",
-                  marginTop: "20px",
-                  background: "#FFFFFF",
-                  border: "1px solid #777777",
-                  boxSizing: "borderBox",
-                  borderRadius: "4px",
-                  padding: "10px",
-                  fontFamily: "Roboto",
-                  fontStyle: "normal",
-                  fontWeight: "400px",
-                  fontSize: "16px",
-                  lineHeight: "16px",
-                  color: "#000000",
-                }}
-                name="postsContent"
-              />
-            </div>
-            {/*))}*/}
-
-            <div className={styles.saveBtn}>
-              <Button onClick={saveEdit}>save</Button>
             </div>
           </div>
         </div>
