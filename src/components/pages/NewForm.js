@@ -48,7 +48,7 @@ const StyledTextField = styled(TextField)({
 function NewForm() {
   const loggedUserName = useSelector((state) => state.user.name);
   const [titlePost, setTitlePost] = useState();
-  const [postContent, setPostContent] = useState();
+  const [postContent, setPostContent] = useState("");
 
   const dispatch = useDispatch();
 
@@ -126,7 +126,6 @@ function NewForm() {
               color: "#000000",
             }}
             name="postsContent"
-            value={postContent}
             onChange={(e) => setPostContent(e.target.value)}
           />
           <ThemeProvider theme={theme}>
