@@ -47,7 +47,7 @@ const StyledTextField = styled(TextField)({
 
 function NewForm() {
   const loggedUserName = useSelector((state) => state.user.name);
-  const [titlePost, setTitlePost] = useState();
+  const [titlePost, setTitlePost] = useState("");
   const [postContent, setPostContent] = useState("");
 
   const dispatch = useDispatch();
@@ -103,7 +103,6 @@ function NewForm() {
             label="Title"
             name="name"
             placeholder="Hello world"
-            value={titlePost}
             onChange={(e) => setTitlePost(e.target.value)}
           />
           <TextareaAutosize
