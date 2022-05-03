@@ -17,12 +17,10 @@ export const postListSlice = createSlice({
       return listWithPostDeleted;
     },
     updatePost(state, { payload }) {
-      const listWithPostEdited = state.map((idPost) => {
-        if (idPost.idPost === payload.idPost) {
-          idPost.titlePost = payload.titlePost;
-          idPost.postContent = payload.postContent;
-        }
-      });
+      const postFound = state.find((post) => post.idPost === payload.idPost);
+      postFound.titlePost = payload.editPostTitle;
+      postFound.postContent = payload.editPostContent;
+      localStorage.setItem("postList", JSON.stringify(state));
     },
   },
 });

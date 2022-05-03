@@ -47,72 +47,79 @@ const StyledTextField = styled(TextField)({
 
 function Post() {
   const [postToBeDeleted, setPostToBeDeleted] = useState(false);
-  const [isEditModal, setIsEditModal] = useState(false);
-  const [newPostTitle, setNewPostTitle] = useState("");
-  const [newPostContent, setNewPostContet] = useState("");
+  const [postToBeEdited, setPostToBeEdited] = useState("");
+  const [editPostTitle, setEditPostTitle] = useState("");
+  const [editPostContent, setEditPostContent] = useState("");
   const postOwner = useSelector((state) => state.user.name);
   const postList = useSelector((state) => state.postList);
 
   const dispatch = useDispatch();
-
+  //Selecionar o post
   const selectPostToBeDeleted = (idPost) => {
     setPostToBeDeleted(idPost);
   };
-
+  //Confirmar
   const confirmDelete = () => {
     setPostToBeDeleted(undefined);
     dispatch(deletePost(postToBeDeleted));
   };
-
+  //Cancelar
   const cancelDeletion = () => {
     setPostToBeDeleted(undefined);
   };
-/*
-  const saveEdit = () => {
-   dispatch(updatePost(newPostTitle, newPostContent));
-    setIsEditModal(false);
-    console.log(postList);
+  //Selecionar o post
+  const selectPostToBeEdited = (idPost) => {
+    setPostToBeEdited(idPost);
   };
-*/
+
+  //Confirmar edição
+  const confirmEdit = () => {
+    dispatch(
+      updatePost({ idPost: postToBeEdited, editPostTitle, editPostContent })
+    );
+    setPostToBeEdited(undefined);
+  };
+
+  /*
+  Novo problema, o formulário de criação de posts não está mais limpando... :(
+
+    Há, o nome do componente para usar para fechar o modal é: Click-away listener no MUI
+  */
+
   return (
     <div>
       <div>
-        {postList.map((idPost) => (
-          <form key={idPost.idPost} className={styles.postsForm}>
+        {postList.map((post) => (
+          <form key={post.idPost} className={styles.postsForm}>
             <div className={styles.containerTitle}>
               <div className={styles.containerPostTitle}>
-                <h4 className={styles.post_Title}>{idPost.titlePost}</h4>
+                <h4 className={styles.post_Title}>{post.titlePost}</h4>
               </div>
-              {postOwner === idPost.author ? (
+              {postOwner === post.author ? (
                 <div className={styles.containerIcons}>
                   <div className={styles.iconsClass}>
                     <DeleteForeverIcon
-                      onClick={() => selectPostToBeDeleted(idPost)}
+                      onClick={() => selectPostToBeDeleted(post)}
                     />
                   </div>
                   <div className={styles.iconsClass}>
                     <EditIcon
-                      onClick={() => {setIsEditModal(true); }}
+                      onClick={() => {
+                        selectPostToBeEdited(post.idPost);
+                        setEditPostTitle(post.titlePost);
+                        setEditPostContent(post.postContent);
+                      }}
                     />
                   </div>
                 </div>
               ) : null}
             </div>
-
-
-
-            {isEditModal ? (
+            {postToBeEdited && (
               <div className={styles.bodyDeleteModal}>
                 <div className={styles.editModal}>
                   <div className={styles.editConfirmation}>
                     <p>Edit item</p>
                   </div>
-
-                  {/*    TEST     
-
-                    vídeo: https://www.youtube.com/watch?v=bml92jhF4t8
-
-                    */}
                   <div>
                     <StyledTextField
                       fullWidth={true}
@@ -120,7 +127,8 @@ function Post() {
                       label="Title"
                       name="title"
                       placeholder="Hello world"
-                      onChange={(e) => setNewPostTitle(e.target.value)}
+                      value={editPostTitle}
+                      onChange={(e) => setEditPostTitle(e.target.value)}
                     />
                     <TextareaAutosize
                       aria-label="minimum height"
@@ -142,36 +150,23 @@ function Post() {
                         color: "#000000",
                       }}
                       name="postsContent"
-                      onChange={(e) => setNewPostContet(e.target.value)}
+                      value={editPostContent}
+                      onChange={(e) => setEditPostContent(e.target.value)}
                     />
                   </div>
-
-                  {/*  FINISH TEST     */}
-
                   <div className={styles.saveBtn}>
-                    <Button onClick={() => {
-                        dispatch(
-                          updatePost({
-                            idPost: idPost.idPost,
-                            titlePost: newPostTitle,
-                            postContent: newPostContent,
-                          })
-                        );
-                        setIsEditModal(false);
-                      }}>save</Button>
+                    <Button onClick={confirmEdit}>save</Button>
                   </div>
                 </div>
               </div>
-            ) : null}
-
-
+            )}
 
             <div className={styles.containernameAndTime}>
               <div className={styles.containerAuthorName}>
-                {<p>@{idPost.author}</p>}
+                {<p>@{post.author}</p>}
               </div>
               <div className={styles.timePost}>
-                <p>{idPost.postMoment}</p>
+                <p>{post.postMoment}</p>
               </div>
             </div>
             <Container>
@@ -193,11 +188,9 @@ function Post() {
                   lineHeight: "16px",
                   color: "#000000",
                 }}
-                value={idPost.postContent}
+                value={post.postContent}
               />
             </Container>
-
-            
           </form>
         ))}
       </div>
