@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hello guys! How are you??  
 ## At first I had not been able to host the project on Versel, but I already did and the link to access it is as follows:
 
@@ -9,6 +10,8 @@
 <hr>
 
 
+=======
+>>>>>>> development
 
 # Getting Started with Create React App
 

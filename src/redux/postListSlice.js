@@ -29,9 +29,4 @@ export const { insertPost, deletePost, updatePost } = postListSlice.actions;
 
 export const selectTitle = (state) => state.title;
 
-<<<<<<< HEAD
 export default postListSlice.reducer;
-=======
-export default postListSlice.reducer;
-
->>>>>>> main

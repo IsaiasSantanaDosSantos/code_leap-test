@@ -33,10 +33,6 @@ function MainPage() {
     }
   }, [navigator]);
 
-
-     
-  
-
   return (
     <div className={styles.body}>
       <div className={styles.container}>
@@ -67,7 +63,7 @@ function MainPage() {
             </ThemeProvider>
           </Grid>
         </Grid>
-        <Container className={styles.contentContaiener}>
+        <Container spacing={3} className={styles.contentContaiener}>
           <div>
             <p className={styles.salutation}>
               Hello, <span>{name}</span>!
