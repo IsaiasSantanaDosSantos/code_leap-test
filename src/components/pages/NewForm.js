@@ -93,6 +93,7 @@ function NewForm() {
   
 
   return (
+<<<<<<< HEAD
     <div>
       <form className={styles.newForm}>
         <Container spacing={4}>
@@ -170,6 +171,83 @@ function NewForm() {
         </Container>
       </form>
     </div>
+=======
+    <form className={styles.newForm}>
+      <Container spacing={4}>
+        <p>What's on your mind?</p>
+        <StyledTextField
+          fullWidth={true}
+          variant="outlined"
+          label="Title"
+          name="name"
+          placeholder="Hello world"
+          onChange={(e) => setTitlePost(e.target.value)}
+        />
+        <TextareaAutosize
+          aria-label="minimum height"
+          minRows={8}
+          placeholder="Content here"
+          style={{
+            width: "100%",
+            marginTop: "20px",
+            background: "#FFFFFF",
+            border: "1px solid #777777",
+            boxSizing: "borderBox",
+            borderRadius: "4px",
+            padding: "10px",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "400px",
+            fontSize: "16px",
+            lineHeight: "16px",
+            color: "#000000",
+          }}
+          name="postsContent"
+          onChange={(e) => setPostContent(e.target.value)}
+        />
+        <ThemeProvider theme={theme}>
+          {titlePost && postContent ? (
+            <Button
+              className={styles.btnLogin}
+              sx={{
+                color: "#fff",
+                background: "#000000",
+                borderRadius: "0",
+                width: "111px",
+                height: "33px",
+                marginTop: "20px",
+                float: "right",
+              }}
+              variant="contained"
+              color="primary"
+              onClick={createPost}
+            >
+              create
+            </Button>
+          ) : (
+            <Button
+              disabled={true}
+              className={styles.btnLogin}
+              sx={{
+                color: "#fff",
+                background: "#000000",
+                borderRadius: "0",
+                width: "111px",
+                height: "33px",
+                marginTop: "20px",
+                float: "right",
+              }}
+              variant="contained"
+              color="primary"
+              onClick={createPost}
+            >
+              create
+            </Button>
+          )}
+        </ThemeProvider>
+      </Container>
+    </form>
+>>>>>>> main
   );
 }
 
