@@ -89,6 +89,8 @@ function NewForm() {
     setPostContent("");
   };
 
+  
+
   return (
     <form className={styles.newForm}>
       <Container spacing={4}>
