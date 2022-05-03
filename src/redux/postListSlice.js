@@ -16,10 +16,16 @@ export const postListSlice = createSlice({
       localStorage.setItem("postList", JSON.stringify(listWithPostDeleted));
       return listWithPostDeleted;
     },
+    updatePost(state, { payload }) {
+      const postFound = state.find((post) => post.idPost === payload.idPost);
+      postFound.titlePost = payload.editPostTitle;
+      postFound.postContent = payload.editPostContent;
+      localStorage.setItem("postList", JSON.stringify(state));
+    },
   },
 });
 
-export const { insertPost, deletePost } = postListSlice.actions;
+export const { insertPost, deletePost, updatePost } = postListSlice.actions;
 
 export const selectTitle = (state) => state.title;
 
