@@ -12,8 +12,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import { deletePost } from "../../redux/postListSlice";
-import { insertPost } from "../../redux/postListSlice";
+import { deletePost, updatePost } from "../../redux/postListSlice";
 const StyledTextField = styled(TextField)({
   [`& .${outlinedInputClasses.root} .${outlinedInputClasses.notchedOutline}`]: {
     borderColor: "#777777",
@@ -48,7 +47,9 @@ const StyledTextField = styled(TextField)({
 function Post() {
   const postList = useSelector((state) => state.postList);
   const [postToBeDeleted, setPostToBeDeleted] = useState(false);
-  const [isEditModal, setIsEditModal] = useState(false);
+  const [postToBeEdited, setPostToBeEdited] = useState();
+  const [editPostTitle, setEditPostTitle] = useState("");
+  const [editPostContent, setEditPostContent] = useState("");
   const postOwner = useSelector((state) => state.user.name);
   const dispatch = useDispatch();
 
@@ -65,43 +66,51 @@ function Post() {
     setPostToBeDeleted(undefined);
   };
 
-  const editPost = () => {
-    setIsEditModal(true);
-
+  const selectPostToBeEdited = (idPost) => {
+    setPostToBeEdited(idPost);
   };
 
   const saveEdit = () => {
-    setIsEditModal(false);
+    dispatch(
+      updatePost({ idPost: postToBeEdited, editPostTitle, editPostContent })
+    );
+    setPostToBeEdited(undefined);
   };
 
   return (
     <div>
       <div>
-        {postList.map((idPost) => (
-          <form key={idPost.idPost} className={styles.postsForm}>
+        {postList.map((post) => (
+          <form key={post.idPost} className={styles.postsForm}>
             <div className={styles.containerTitle}>
               <div className={styles.containerPostTitle}>
-                <h4 className={styles.post_Title}>{idPost.titlePost}</h4>
+                <h4 className={styles.post_Title}>{post.titlePost}</h4>
               </div>
-              {postOwner === idPost.author ? (
+              {postOwner === post.author ? (
                 <div className={styles.containerIcons}>
                   <div className={styles.iconsClass}>
                     <DeleteForeverIcon
-                      onClick={() => selectPostToBeDeleted(idPost)}
+                      onClick={() => selectPostToBeDeleted(post)}
                     />
                   </div>
                   <div className={styles.iconsClass}>
-                    <EditIcon onClick={editPost} />
+                    <EditIcon
+                      onClick={() => {
+                        selectPostToBeEdited(post.idPost);
+                        setEditPostTitle(post.titlePost);
+                        setEditPostContent(post.postContent);
+                      }}
+                    />
                   </div>
                 </div>
               ) : null}
             </div>
             <div className={styles.containernameAndTime}>
               <div className={styles.containerAuthorName}>
-                {<p>@{idPost.author}</p>}
+                {<p>@{post.author}</p>}
               </div>
               <div className={styles.timePost}>
-                <p>{idPost.date}</p>
+                <p>{post.date}</p>
               </div>
             </div>
             <Container>
@@ -123,7 +132,7 @@ function Post() {
                   lineHeight: "16px",
                   color: "#000000",
                 }}
-                value={idPost.postContent}
+                value={post.postContent}
               />
             </Container>
           </form>
@@ -144,7 +153,7 @@ function Post() {
           </div>
         </div>
       ) : null}
-      {isEditModal ? (
+      {postToBeEdited && (
         <div className={styles.bodyDeleteModal}>
           <div className={styles.editModal}>
             <div className={styles.editConfirmation}>
@@ -159,6 +168,8 @@ function Post() {
                 label="Title"
                 name="name"
                 placeholder="Hello world"
+                value={editPostTitle}
+                onChange={(e) => setEditPostTitle(e.target.value)}
               />
               <TextareaAutosize
                 aria-label="minimum height"
@@ -180,6 +191,8 @@ function Post() {
                   color: "#000000",
                 }}
                 name="postsContent"
+                value={editPostContent}
+                onChange={(e) => setEditPostContent(e.target.value)}
               />
             </div>
             {/*))}*/}
@@ -189,7 +202,7 @@ function Post() {
             </div>
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 }
