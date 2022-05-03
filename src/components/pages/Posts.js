@@ -54,6 +54,7 @@ function Post() {
   const postList = useSelector((state) => state.postList);
 
   const dispatch = useDispatch();
+  
   let useClickOutside = (handler) => {
     let domNode = useRef()
 
@@ -72,7 +73,7 @@ function Post() {
     return domNode
   }
 
-  
+
   const selectPostToBeDeleted = (idPost) => {
     setPostToBeDeleted(idPost);
   };
@@ -90,7 +91,6 @@ function Post() {
     setPostToBeEdited(idPost);
   };
 
-
   const confirmEdit = () => {
     dispatch(
       updatePost({ idPost: postToBeEdited, editPostTitle, editPostContent })
@@ -98,13 +98,15 @@ function Post() {
     setPostToBeEdited(undefined);
   };
 
+
   /*
   Novo problema, o formulário de criação de posts não está mais limpando... :(
   */
-
+ 
     let domNode = useClickOutside(() => {
       setPostToBeEdited(false)
     })
+
 
   return (
     <div>
@@ -134,50 +136,51 @@ function Post() {
                 </div>
               ) : null}
             </div>
+
             {postToBeEdited && (
               <div className={styles.bodyDeleteModal}>
-                <div ref={domNode} className={styles.editModal}>
-                  <div className={styles.editConfirmation}>
-                    <p>Edit item</p>
+                  <div ref={domNode} className={styles.editModal}>
+                    <div className={styles.editConfirmation}>
+                      <p>Edit item</p>
+                    </div>
+                    <div>
+                      <StyledTextField
+                        fullWidth={true}
+                        variant="outlined"
+                        label="Title"
+                        name="title"
+                        placeholder="Hello world"
+                        value={editPostTitle}
+                        onChange={(e) => setEditPostTitle(e.target.value)}
+                      />
+                      <TextareaAutosize
+                        aria-label="minimum height"
+                        minRows={8}
+                        placeholder="Content here"
+                        style={{
+                          width: "100%",
+                          marginTop: "20px",
+                          background: "#FFFFFF",
+                          border: "1px solid #777777",
+                          boxSizing: "borderBox",
+                          borderRadius: "4px",
+                          padding: "10px",
+                          fontFamily: "Roboto",
+                          fontStyle: "normal",
+                          fontWeight: "400px",
+                          fontSize: "16px",
+                          lineHeight: "16px",
+                          color: "#000000",
+                        }}
+                        name="postsContent"
+                        value={editPostContent}
+                        onChange={(e) => setEditPostContent(e.target.value)}
+                      />
+                    </div>
+                    <div className={styles.saveBtn}>
+                      <Button onClick={confirmEdit}>save</Button>
+                    </div>
                   </div>
-                  <div>
-                    <StyledTextField
-                      fullWidth={true}
-                      variant="outlined"
-                      label="Title"
-                      name="title"
-                      placeholder="Hello world"
-                      value={editPostTitle}
-                      onChange={(e) => setEditPostTitle(e.target.value)}
-                    />
-                    <TextareaAutosize
-                      aria-label="minimum height"
-                      minRows={8}
-                      placeholder="Content here"
-                      style={{
-                        width: "100%",
-                        marginTop: "20px",
-                        background: "#FFFFFF",
-                        border: "1px solid #777777",
-                        boxSizing: "borderBox",
-                        borderRadius: "4px",
-                        padding: "10px",
-                        fontFamily: "Roboto",
-                        fontStyle: "normal",
-                        fontWeight: "400px",
-                        fontSize: "16px",
-                        lineHeight: "16px",
-                        color: "#000000",
-                      }}
-                      name="postsContent"
-                      value={editPostContent}
-                      onChange={(e) => setEditPostContent(e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.saveBtn}>
-                    <Button onClick={confirmEdit}>save</Button>
-                  </div>
-                </div>
               </div>
             )}
 

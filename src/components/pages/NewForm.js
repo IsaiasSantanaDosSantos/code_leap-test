@@ -47,8 +47,8 @@ const StyledTextField = styled(TextField)({
 
 function NewForm() {
   const loggedUserName = useSelector((state) => state.user.name);
-  const [titlePost, setTitlePost] = useState("");
-  const [postContent, setPostContent] = useState("");
+  const [titlePost, setTitlePost] = useState();
+  const [postContent, setPostContent] = useState();
 
   const dispatch = useDispatch();
 
