@@ -46,7 +46,7 @@ const StyledTextField = styled(TextField)({
 });
 
 function ModalComp() {
-  const [name, setName] = useState();
+  const [name, setName] = useState("");
   const navigator = useNavigate();
   const dispatch = useDispatch();
 
@@ -73,7 +73,6 @@ function ModalComp() {
             variant="outlined"
             label="Please enter your username"
             name="name"
-            value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name..."
           />
