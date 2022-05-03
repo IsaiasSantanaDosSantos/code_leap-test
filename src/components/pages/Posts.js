@@ -10,7 +10,7 @@ import styles from "./Posts.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { deletePost, updatePost } from "../../redux/postListSlice";
 
@@ -54,25 +54,43 @@ function Post() {
   const postList = useSelector((state) => state.postList);
 
   const dispatch = useDispatch();
-  //Selecionar o post
+  let useClickOutside = (handler) => {
+    let domNode = useRef()
+
+    useEffect(() => {
+      let maybeHandler = (event) => {
+        if(!domNode.current.contains(event.target)) {
+          handler()
+        }
+      }
+      document.addEventListener("mousedown", maybeHandler)
+
+      return () => {
+        document.removeEventListener("mousedown", maybeHandler)
+      }
+    })
+    return domNode
+  }
+
+  
   const selectPostToBeDeleted = (idPost) => {
     setPostToBeDeleted(idPost);
   };
-  //Confirmar
+
   const confirmDelete = () => {
     setPostToBeDeleted(undefined);
     dispatch(deletePost(postToBeDeleted));
   };
-  //Cancelar
+
   const cancelDeletion = () => {
     setPostToBeDeleted(undefined);
   };
-  //Selecionar o post
+
   const selectPostToBeEdited = (idPost) => {
     setPostToBeEdited(idPost);
   };
 
-  //Confirmar edição
+
   const confirmEdit = () => {
     dispatch(
       updatePost({ idPost: postToBeEdited, editPostTitle, editPostContent })
@@ -82,11 +100,11 @@ function Post() {
 
   /*
   Novo problema, o formulário de criação de posts não está mais limpando... :(
-
-    
-
-    Há, o nome do componente para usar para fechar o modal é: Click-away listener no MUI
   */
+
+    let domNode = useClickOutside(() => {
+      setPostToBeEdited(false)
+    })
 
   return (
     <div>
@@ -118,7 +136,7 @@ function Post() {
             </div>
             {postToBeEdited && (
               <div className={styles.bodyDeleteModal}>
-                <div className={styles.editModal}>
+                <div ref={domNode} className={styles.editModal}>
                   <div className={styles.editConfirmation}>
                     <p>Edit item</p>
                   </div>
