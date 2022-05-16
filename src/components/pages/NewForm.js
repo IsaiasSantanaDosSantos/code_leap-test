@@ -67,8 +67,7 @@ function NewForm() {
   let hour = String(date.getHours()).padStart(2, "0");
   let min = String(date.getMinutes()).padStart(2, "0");
   let sec = String(date.getSeconds()).padStart(2, "0");
-  let postMoment =
-    day + "/" + month + "/" + year + "-" + hour + ":" + min + ":" + sec;
+  let postMoment = day + "/" + month + "/" + year +"-"+ hour + ":" + min + ":" + sec;
 
   let idPost = date.getTime();
 
